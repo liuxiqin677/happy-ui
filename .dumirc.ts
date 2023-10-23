@@ -22,6 +22,6 @@ export default defineConfig({
   ],
   logo: '/logo.svg',
   favicons: ['/logo.svg'],
+  // 取消打包静态单个组件库和函数工具
+  exportStatic: false,
 });
-// pnpm i jest @testing-library/react @types/jest ts-jest jest-environment-jsdom jest-less-loader typescript@4 -D
-

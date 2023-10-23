@@ -1,40 +1,35 @@
-# happy-ui
+# happy UI
 
-[![NPM version](https://img.shields.io/npm/v/happy-ui.svg?style=flat)](https://npmjs.org/package/happy-ui)
-[![NPM downloads](http://img.shields.io/npm/dm/happy-ui.svg?style=flat)](https://npmjs.org/package/happy-ui)
+happy ui 是基于 React 的 轻量级 UI 组件库。
 
-A pretty and simple components library based on React and Typescript and dumi
+## 特性
 
-## Usage
+- 🌈 提炼自企业级中后台产品的交互语言和视觉风格。
+- 📦 开箱即用的高质量 React 组件。
+- 🛡 使用 TypeScript 开发，提供完整的类型定义文件。
+- ⚙️ 全链路开发和设计工具体系。
+- 🌍 数十个国际化语言支持。
+- 🎨 深入每个细节的主题定制能力。
 
-TODO
+## 安装
 
-## Options
+推荐 `pnpm` 对包进行管理
 
-TODO
-
-## Development
-
-```bash
-# install dependencies
-$ pnpm install
-
-# develop library by docs demo
-$ pnpm start
-
-# build library source code
-$ pnpm run build
-
-# build library source code in watch mode
-$ pnpm run build:watch
-
-# build docs
-$ pnpm run docs:build
-
-# check your project for potential problems
-$ pnpm run doctor
+```js
+pnpm install happy-ui -D
 ```
 
-## LICENSE
+## 示例
 
-MIT
+```jsx
+import React from 'react';
+import { Alert } from 'happy-ui';
+
+export default () => {
+  return <Alert message="Success Text" type="success" />;
+};
+```
+
+## 拥抱 Typescript
+
+happy-ui 使用 TypeScript 进行书写并提供了完整的定义文件。
