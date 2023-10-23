@@ -1,0 +1,143 @@
+.happy-modal-root {
+  transition: all 0.5s ease-in-out;
+  box-sizing: border-box;
+  .happy-modal-mask {
+    box-sizing: border-box;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.45);
+    // pointer-events: none;
+  }
+}
+
+.happy-modal {
+  z-index: 1001;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.88);
+  font-size: 14px;
+  line-height: 1.5714285714285714;
+  list-style: none;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  pointer-events: none;
+  top: 100px;
+  width: auto;
+  max-width: calc(100vw - 32px);
+  padding-bottom: 24px;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  .happy-modal-content {
+    box-sizing: border-box;
+    position: relative;
+    background-color: #ffffff;
+    background-clip: padding-box;
+    border: 0;
+    border-radius: 8px;
+    box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08),
+      0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+    pointer-events: auto;
+    padding: 20px 24px;
+    animation: xSpread 0.3s;
+    .happy-modal-close {
+      box-sizing: border-box;
+      position: absolute;
+      top: 17px;
+      inset-inline-end: 17px;
+      z-index: 1010;
+      padding: 0;
+      color: rgba(0, 0, 0, 0.45);
+      font-weight: 600;
+      line-height: 1;
+      text-decoration: none;
+      background: transparent;
+      border-radius: 4px;
+      width: 22px;
+      height: 22px;
+      border: 0;
+      outline: 0;
+      cursor: pointer;
+      transition: color 0.2s, background-color 0.2s;
+      .happy-modal-close-x {
+        box-sizing: border-box;
+        display: flex;
+        font-size: 16px;
+        font-style: normal;
+        line-height: 22px;
+        justify-content: center;
+        text-transform: none;
+        text-rendering: auto;
+        .action {
+          display: inline-flex;
+          align-items: center;
+          color: inherit;
+          font-style: normal;
+          line-height: 0;
+          text-align: center;
+          text-transform: none;
+          vertical-align: -0.125em;
+          text-rendering: optimizeLegibility;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+      }
+    }
+    .happy-modal-header {
+      box-sizing: border-box;
+      color: rgba(0, 0, 0, 0.88);
+      background: #ffffff;
+      border-radius: 8px 8px 0 0;
+      margin-bottom: 8px;
+      .happy-modal-title {
+        margin: 0;
+        color: rgba(0, 0, 0, 0.88);
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 1.5;
+        word-wrap: break-word;
+      }
+      .happy-modal-title-icon {
+        padding-right: 10px;
+        svg {
+          font-size: 22px;
+        }
+      }
+    }
+    .happy-modal-body {
+      box-sizing: border-box;
+      font-size: 14px;
+      line-height: 1.5714285714285714;
+      word-wrap: break-word;
+    }
+    .happy-modal-footer {
+      box-sizing: border-box;
+      display: flex;
+      justify-content: flex-end;
+      background: transparent;
+      margin-top: 12px;
+      .happy-btn:not(:first-child) {
+        margin-inline-start: 8px;
+      }
+    }
+  }
+}
+.happy-modal-centered.happy-modal {
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes xSpread {
+  0% {
+      opacity: 0;
+      transform: scale(0);
+  }
+  100% {
+      opacity: 1;
+      transform: scale(1);
+  }
+}

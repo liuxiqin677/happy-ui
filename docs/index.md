@@ -1,22 +1,20 @@
 ---
 hero:
-  title: library
-  description: A pretty and simple components library based on React and Typescript and dumi
+  title: happy UI
+  description: 一个基于 React + Typescript 的轻量级 UI 组件库~
   actions:
-    - text: Hello
-      link: /
-    - text: World
-      link: /
+    - text: 整体介绍
+      link: /guide
+    - text: 立即开始
+      link: /components/button
 features:
-  - title: Hello
+  - title: React 进阶必备
     emoji: 💎
-    description: Put hello description here
-  - title: World
+    description: 对于 React 使用者来说，熟练的使用一个组件库还不够，还需要阅读优秀的组件源码，学习组件封装思想。
+  - title: 工程化
     emoji: 🌈
-    description: Put world description here
-  - title: '!'
+    description: 从 0 到 1 打造属于自己的组件库
+  - title: 开源
     emoji: 🚀
-    description: Put ! description here
+    description: 与所有的前端工作者交流学习
 ---
-
-happy-ui

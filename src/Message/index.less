@@ -1,0 +1,64 @@
+#happy-message-container {
+  box-sizing: border-box;
+  position: fixed;
+  z-index: 1000;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px;
+  .happy-message {
+    margin-bottom: 12px;
+    box-sizing: border-box;
+    padding: 9px 12px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08),
+      0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+    pointer-events: all;
+    .happy-message-content {
+      box-sizing: border-box;
+      font-size: 14px;
+      .happy-message-icon {
+        margin-inline-end: 8px;
+        position: relative;
+        top: 2px;
+        font-size: 16px;
+      }
+    }
+  }
+  .happy-message {
+    &-visible {
+      opacity: 0;
+      animation: visible 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s 1 forwards;
+    }
+
+    &-hidden {
+      opacity: 1;
+      animation: hidden 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s 1 forwards;
+    }
+  }
+}
+
+@keyframes visible {
+  from {
+    opacity: 0;
+    top: -30px;
+  }
+
+  to {
+    opacity: 1;
+    top: 0;
+  }
+}
+
+@keyframes hidden {
+  from {
+    opacity: 1;
+    top: 0;
+  }
+
+  to {
+    opacity: 0;
+    top: -30px;
+  }
+}

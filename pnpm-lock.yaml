@@ -20,6 +20,9 @@ devDependencies:
   '@umijs/lint':
     specifier: ^4.0.0
     version: registry.npmmirror.com/@umijs/lint@4.0.87(eslint@8.52.0)(styled-components@6.1.0)(stylelint@14.16.1)(typescript@5.2.2)
+  classnames:
+    specifier: ^2.3.2
+    version: registry.npmmirror.com/classnames@2.3.2
   dumi:
     specifier: ^2.2.13
     version: registry.npmmirror.com/dumi@2.2.13(@babel/core@7.23.2)(@types/node@20.5.1)(@types/react@18.2.31)(eslint@8.52.0)(prettier@2.8.8)(react-dom@18.2.0)(react@18.2.0)(styled-components@6.1.0)(stylelint@14.16.1)(typescript@5.2.2)(webpack@5.89.0)
