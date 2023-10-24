@@ -1,7 +1,7 @@
 /*
  * @Author: liuxiqin
  * @Date: 2023-10-09 16:03:46
- * @LastEditTime: 2023-10-18 16:41:49
+ * @LastEditTime: 2023-10-24 16:36:38
  * @LastEditors: liuxiqin
  * @Description:
  */
@@ -11,7 +11,7 @@ import './index.less';
 
 export type InputSize = 'large' | 'middle' | 'small';
 
-export type Type = 'input' | 'textarea';
+export type Type = 'input' | 'textarea' | 'password';
 
 export interface IProps {
   type?: Type;
@@ -182,83 +182,92 @@ const Input: FC<IProps> = ({
     });
   }, [showCount, addonAfter, addonBefore]);
 
-  return type === 'input' ? (
-    <div className={inputWrapperClassName}>
-      {typeof addonBefore === 'string' ? (
-        <span className="happy-input-group-addon">{addonBefore}</span>
-      ) : (
-        addonBefore
-      )}
-      {showCount ? (
-        <div className="happy-input-affix-group">
-          <InputComponent
-            id={id}
-            disabled={disabled}
-            className={className}
-            inputClassNames={inputClassNames}
-            styles={styles}
-            placeholder={placeholder}
-            value={value}
-            maxLength={maxLength}
-            setCurrentCount={(value: number) => setCurrentCount(value)}
-            onChange={(value: string) => onChange?.(value)}
-          />
-          <span className="happy-input-suffix">
-            {currentCount}
-            {maxLength ? `/${maxLength}` : ''}
-          </span>
+  return (
+    <>
+      {type === 'input' && (
+        <div className={inputWrapperClassName}>
+          {typeof addonBefore === 'string' ? (
+            <span className="happy-input-group-addon">{addonBefore}</span>
+          ) : (
+            addonBefore
+          )}
+          {showCount ? (
+            <div className="happy-input-affix-group">
+              <InputComponent
+                id={id}
+                disabled={disabled}
+                className={className}
+                inputClassNames={inputClassNames}
+                styles={styles}
+                placeholder={placeholder}
+                value={value}
+                maxLength={maxLength}
+                setCurrentCount={(value: number) => setCurrentCount(value)}
+                onChange={(value: string) => onChange?.(value)}
+              />
+              <span className="happy-input-suffix">
+                {currentCount}
+                {maxLength ? `/${maxLength}` : ''}
+              </span>
+            </div>
+          ) : (
+            <InputComponent
+              id={id}
+              disabled={disabled}
+              className={className}
+              inputClassNames={inputClassNames}
+              styles={styles}
+              placeholder={placeholder}
+              value={value}
+              maxLength={maxLength}
+              setCurrentCount={(value: number) => setCurrentCount(value)}
+              onChange={(value: string) => onChange?.(value)}
+            />
+          )}
+          {typeof addonAfter === 'string' ? (
+            <span className="happy-input-group-addon">{addonAfter}</span>
+          ) : (
+            addonAfter
+          )}
         </div>
-      ) : (
-        <InputComponent
-          id={id}
-          disabled={disabled}
-          className={className}
-          inputClassNames={inputClassNames}
-          styles={styles}
-          placeholder={placeholder}
-          value={value}
-          maxLength={maxLength}
-          setCurrentCount={(value: number) => setCurrentCount(value)}
-          onChange={(value: string) => onChange?.(value)}
-        />
       )}
-      {typeof addonAfter === 'string' ? (
-        <span className="happy-input-group-addon">{addonAfter}</span>
-      ) : (
-        addonAfter
+      {type === 'textarea' && (
+        <div className="happy-textArea-group">
+          {showCount ? (
+            <div className="happy-textArea-group">
+              <TextAreaComponent
+                maxLength={maxLength}
+                styles={styles}
+                className={className}
+                value={value}
+                bordered={bordered}
+                setCurrentCount={(value: number) => setCurrentCount(value)}
+                onChange={onChange}
+                cols={cols}
+                rows={rows}
+                resizeable={resizeable}
+              />
+              <span className="happy-textArea-suffix">
+                {currentCount}
+                {maxLength ? `/${maxLength}` : ''}
+              </span>
+            </div>
+          ) : (
+            <TextAreaComponent
+              maxLength={maxLength}
+              styles={styles}
+              className={className}
+              value={value}
+              bordered={bordered}
+              onChange={onChange}
+              cols={cols}
+              rows={rows}
+              resizeable={resizeable}
+            />
+          )}
+        </div>
       )}
-    </div>
-  ) : showCount ? (
-    <div className="happy-textArea-group">
-      <TextAreaComponent
-        maxLength={maxLength}
-        styles={styles}
-        className={className}
-        value={value}
-        bordered={bordered}
-        setCurrentCount={(value: number) => setCurrentCount(value)}
-        onChange={onChange}
-        cols={cols}
-        rows={rows}
-        resizeable={resizeable}
-      />
-      <span className="happy-textArea-suffix">
-        {currentCount}
-        {maxLength ? `/${maxLength}` : ''}
-      </span>
-    </div>
-  ) : (
-    <TextAreaComponent
-      maxLength={maxLength}
-      styles={styles}
-      className={className}
-      value={value}
-      bordered={bordered}
-      onChange={onChange}
-      cols={cols}
-      rows={rows}
-      resizeable={resizeable}
-    />
+    </>
   );
 };
 

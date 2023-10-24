@@ -1,8 +1,19 @@
 .happy-loading-icon {
-  width: 30px;
-  height: 30px;
-  border: 2px solid #000;
+  width: 14px;
+  height: 14px;
+  border: 2px solid #fff;
   border-top-color: transparent;
   border-radius: 100%;
-  animation: circle infinite 0.75s linear;
+
+  animation: circle infinite 1s linear;
+
+}
+// 转转转动画
+@keyframes circle {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

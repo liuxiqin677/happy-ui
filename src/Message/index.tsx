@@ -4,13 +4,15 @@ import ErrorIcon from '../../components/ErrorIcon';
 import InfoIcon from '../../components/InfoIcon';
 import SuccessIcon from '../../components/SuccessIcon';
 import WarningIcon from '../../components/WarningIcon';
-import { useCssClassManager } from './hooks';
 import { uuid } from '../utils';
+import { useCssClassManager } from './hooks';
 import './index.less';
 
 export type messageType = 'info' | 'warning' | 'error' | 'success';
 
 export type messageInput = (message: IMessageProps) => void;
+
+export type InfoMessageInput = (message: MessageOptions) => void;
 
 export interface IMessageProps {
   className?: string;
@@ -26,19 +28,20 @@ export interface messageQueueItem extends IMessageProps {
 }
 
 export interface MessageOptions extends IMessageProps {
-  type: messageType;
+  type?: messageType;
 }
 
 export interface BaseMessageOptions extends MessageOptions {
   id: string;
 }
 
-export interface propsMessage {
+export interface IBaseMessageObjecProps {
   info: messageInput;
   warn: messageInput;
   error: messageInput;
   success: messageInput;
   update: messageInput;
+  open: InfoMessageInput;
 }
 
 const CONTAINER_ID = 'happy-message-container';
@@ -95,9 +98,18 @@ function updateMessage(config: IMessageProps) {
 
 // Message 组件
 function BaseMessage(props: BaseMessageOptions) {
-  const { type, content, id, duration, style, icon, className = '' } = props;
+  const {
+    type,
+    content,
+    id,
+    duration = 3,
+    style,
+    icon,
+    className = '',
+  } = props;
 
-  const refMessage = useRef<any>();
+  const refMessage = useRef<HTMLDivElement>();
+  const timerRef = useRef<NodeJS.Timeout>();
 
   const classMap = {
     base: '',
@@ -121,18 +133,19 @@ function BaseMessage(props: BaseMessageOptions) {
     if (duration !== 0) {
       addClassName('visible');
 
-      setTimeout(
-        () => {
-          handleHidden();
-        },
-        duration ? duration * 1000 : 3000,
-      );
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+
+      timerRef.current = setTimeout(() => {
+        handleHidden();
+      }, duration * 1000);
     }
-  }, []);
+  }, [duration]);
 
   return (
     <div
-      ref={refMessage}
+      ref={refMessage as React.RefObject<HTMLDivElement>}
       className={`happy-message happy-message-${type} ${classList} ${className}`}
       style={style}
     >
@@ -150,13 +163,15 @@ function BaseMessage(props: BaseMessageOptions) {
 }
 
 // 对外导出的 api
-const Message: propsMessage = {
+const Message: IBaseMessageObjecProps = {
   info: (config: IMessageProps) => addMessage({ type: 'info', ...config }),
   warn: (config: IMessageProps) => addMessage({ type: 'warning', ...config }),
   error: (config: IMessageProps) => addMessage({ type: 'error', ...config }),
   success: (config: IMessageProps) =>
     addMessage({ type: 'success', ...config }),
   update: (config: IMessageProps) => updateMessage(config),
+  open: (config: MessageOptions) =>
+    addMessage({ ...config, type: config.type ? config.type : 'info' }),
 };
 
 export default Message;

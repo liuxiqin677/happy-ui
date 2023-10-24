@@ -54,6 +54,7 @@ export default () => {
   return (
     <Space>
       <Button 
+        style={{color: '#1677ff'}}
         onClick={() => {
           Message.info({
             content: 'hello Happy-ui',
@@ -63,6 +64,7 @@ export default () => {
         Info Message
       </Button>
       <Button 
+        style={{color: '#ff4d4f'}}
         onClick={() => {
           Message.error({
             content: 'hello Happy-ui',
@@ -72,6 +74,7 @@ export default () => {
         Error Message
       </Button>
       <Button 
+        style={{color: '#52c41a'}}
         onClick={() => {
           Message.success({
             content: 'hello Happy-ui',
@@ -81,10 +84,74 @@ export default () => {
         Success Message
       </Button>
       <Button 
+        style={{color: '#faad14'}}
         onClick={() => {
           Message.warn({
             content: 'hello Happy-ui',
           })
+        }}
+      >
+        Warning Message
+      </Button>
+    </Space>
+  )
+}
+```
+
+```jsx
+/**
+ * title: open
+ * description: 可以通过 `open` API，来弹出消息。`open` API传入的配置与其他 api 相同，只不过可以显示的指示 type。`type` 默认是 'info'。
+ */
+import React, { useState } from 'react';
+import { Message, Button, Space } from 'happy-ui';
+
+export default () => { 
+  return (
+    <Space>
+      <Button 
+        type='primary'
+        onClick={() => {
+          Message.open({
+            content: 'hello Happy-ui',
+          })
+        }}
+      >
+        Default (Info) Message
+      </Button>
+      <Button 
+        onClick={() => {
+          Message.open({
+            type: 'success',
+            content: 'hello Happy-ui',
+          })
+        }}
+      >
+        Success Message
+      </Button>
+      <Button 
+        onClick={() => {
+          Message.success({
+            type: 'error',
+            content: 'hello Happy-ui',
+          })
+        }}
+      >
+        Error Message
+      </Button>
+      <Button 
+        onClick={() => {
+          Message.warn({
+            type: 'warning',
+            key: 'open_warning',
+            content: 'hello Happy-ui',
+          })
+          setTimeout(() => {
+            Message.update({
+              content: 'hello Jolyne!',
+              key: 'open_warning',
+            })
+          }, 1000)
         }}
       >
         Warning Message
@@ -153,6 +220,7 @@ export default () => {
             Message.update({
               content: 'hello Jolyne!',
               key: 'update_success',
+              duration: 10
             })
           }, 1000)
         }}
@@ -172,11 +240,14 @@ export default () => {
 | duration | number | 3 |  false  | 自动关闭的延时，单位秒。设为 0 时不自动关闭
 | icon | ReactNode	 | - |  false  | 自定义图标	
 | key | string、number	 | - |  false  | 当前提示的唯一标志		
-| style | CSSProperties	 | - |  false  | 自定义内联样式				
+| style | CSSProperties	 | - |  false  | 自定义内联样式			
+
+
 
 ## 思路
 Message 组件的难点主要是如何通过 `API` 调用的方式去渲染 Message
 
+### 暴露API
 首先，Message 组件通过 `API` 的方式去生成的方式，需要暴露一个对象出来，即：
 ```js
   const Message = {
@@ -185,6 +256,8 @@ Message 组件的难点主要是如何通过 `API` 调用的方式去渲染 Mess
     // .... 后续方法
   }
 ```
+
+### 渲染 Message
 对象中的每一个方法都是通过我们定义的函数 `addMessage ` 添加一个 Message DOM。然后，我们现在需要思考的是，如何手动的将 Message 添加到 DOM 结构中去。
 
 说到在 React 中手动生成 DOM 节点，首先想到的就是 `ReactDOM.render()` 这个 API，但是 React 18 不再支持这个 API 了，在未来版本中将会被废弃，请使用 `createRoot` 来替代。
@@ -241,4 +314,48 @@ Message 组件的难点主要是如何通过 `API` 调用的方式去渲染 Mess
 
 然后对于像 `更新 Message、删除 Message`，同样的，去更新、删除 `MESSAGE_QUEUE 中的数据`即可
 
+### 更新需要注意的点
 其中，`更新 Message` 的话就是去 `MESSAGE_QUEUE` 中查找 `item.key === config.key` 的项，然后把最新的 `{...prevConfig, ...config}` 作为新的 数据存入 MESSAGE_QUEUE 即可
+
+但是更新的时候，如果更新了 `duration` 参数的话，由于组件内部目前是通过 `setTimeout` 来做延迟的
+```ts
+  useEffect(() => {
+    if (duration !== 0) {
+      addClassName('visible');
+
+      setTimeout(
+        () => {
+          handleHidden();
+        },
+        duration * 1000,
+      );
+    }
+  }, [duration]);
+```
+假如当 `duration` 从默认的 3秒 更新到 10秒后，其实内容是能更新的，但是 3秒后消息一样消失了
+
+这是因为存在闭包。具体的可以看我这篇文章：[ahooks源码系列（一）：React 闭包陷阱](https://juejin.cn/post/7246643397426036796)
+
+所以，咱们这里需要用 `ref` 记录更新前的定时器，当 `duration` 改变后，清除上一次定时器，然后记录新的定时器
+```ts
+  const timerRef = useRef<NodeJS.Timeout>();
+
+  useEffect(() => {
+    if (duration !== 0) {
+      addClassName('visible');
+
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+
+      timerRef.current = setTimeout(
+        () => {
+          handleHidden();
+        },
+        duration * 1000,
+      );
+    }
+  }, [duration]);
+```
+
+这样在更新了 `duration` 后，会重新记时间

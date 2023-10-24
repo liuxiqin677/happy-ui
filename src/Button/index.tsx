@@ -1,7 +1,7 @@
 /*
  * @Author: liuxiqin
  * @Date: 2023-10-07 11:09:34
- * @LastEditTime: 2023-10-21 12:14:09
+ * @LastEditTime: 2023-10-24 11:10:44
  * @Description:
  */
 import cs from 'classnames';
@@ -77,7 +77,9 @@ const Button: FC<IButtonProps & NativeButtonProps> = ({
       {...props}
     >
       {loading ? (
-        <LoadingIcon />
+        <div className="happy-btn-default-loading-icon">
+          <LoadingIcon />
+        </div>
       ) : icon ? (
         <div className={`${btnIcon}`}>{icon}</div>
       ) : null}

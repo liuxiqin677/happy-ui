@@ -18,6 +18,12 @@ export default defineConfig({
     .dumi-default-hero-title {
       font-size: 120px !important;
     }
+    .dumi-default-sidebar {
+      width: 220px !important;
+    }
+    .dumi-default-sidebar > dl > dd > a {
+      font-size: 14px !important;
+    }
   `,
   ],
   logo: '/logo.svg',
