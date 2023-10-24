@@ -1,0 +1,33 @@
+.happy-radio-group {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.88);
+  font-size: 0;
+  line-height: 1.5714285714285714;
+  list-style: none;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  display: inline-block;
+}
+.happy-radio-group-large {
+  .happy-radio-button-wrapper {
+    height: 38px;
+    line-height: 38px;
+  }
+}
+.happy-radio-group-small {
+  .happy-radio-button-wrapper {
+    height: 22px;
+    line-height: 22px;
+  }
+}
+.happy-radio-group-solid
+  .happy-radio-button-wrapper-checked:not(
+    .happy-radio-button-wrapper-disabled
+  ) {
+  color: #fff;
+  background: #1677ff;
+  border-color: #1677ff;
+}

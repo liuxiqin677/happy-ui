@@ -1,1 +1,14 @@
-export { default as Foo } from './Foo';
+export { default as Button } from './Button';
+export { default as Input } from './Input';
+export { default as InputNumber } from './InputNumber';
+export { default as Layout } from './Layout';
+export { default as Content } from './Layout/Content';
+export { default as Footer } from './Layout/Footer';
+export { default as Header } from './Layout/Header';
+export { default as Sider } from './Layout/Sider';
+export { default as LazyLoad } from './LazyLoad';
+export { default as Message } from './Message';
+export { default as Modal } from './Modal';
+export { default as Radio } from './Radio';
+export { default as Space } from './Space';
+export { default as Alert } from './Alert';

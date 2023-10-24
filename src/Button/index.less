@@ -1,0 +1,216 @@
+//所有类型按钮的统一样式
+.happy-btn {
+  font-size: 14px;
+  height: 32px;
+  padding: 4px 15px;
+  border-radius: 6px;
+  text-align: center;
+  transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+// 默认按钮
+.happy-btn-default {
+  background-color: #ffffff;
+  border: 1px solid #d9d9d9;
+  color: rgba(0, 0, 0, 0.88);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.02);
+}
+.happy-btn-default:hover {
+  color: #4096ff;
+  border-color: #4096ff;
+}
+
+
+
+//主要按钮
+.happy-btn-primary {
+  color: #fff;
+  background-color: #1677ff;
+  box-shadow: 0 2px 0 rgba(5, 145, 255, 0.1);
+  border-color: transparent;
+}
+.happy-btn-primary:hover {
+  color: #fff;
+  background-color: #4096ff;
+}
+
+
+
+//虚线按钮
+.happy-btn-dashed {
+  background-color: #ffffff;
+  border-color: #d9d9d9;
+  color: rgba(0, 0, 0, 0.88);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.02);
+  border-style: dashed;
+  border-width: 1px;
+}
+.happy-btn-dashed:hover {
+  color: #4096ff;
+  border-color: #4096ff;
+}
+
+
+
+//文本按钮
+.happy-btn-text {
+  border-color: transparent;
+  background-color: transparent;
+}
+.happy-btn-text:hover {
+  color: rgba(0, 0, 0, 0.88);
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
+
+
+//链接按钮
+.happy-btn-link {
+  color: #1677ff;
+  border-color: transparent;
+  background-color: transparent;
+}
+.happy-btn-link:hover {
+  color: #69b1ff;
+  background-color: transparent;
+}
+
+
+// size大小按钮样式
+.happy-btn-size-lg {
+  font-size: 16px;
+  height: 40px;
+  padding: 6.428571428571429px 15px;
+  border-radius: 8px;
+}
+.happy-btn-size-sm {
+  font-size: 14px;
+  height: 24px;
+  padding: 0px 7px;
+  border-radius: 4px;
+}
+
+
+
+// 按钮禁用样式
+.happy-btn-primary:disabled,
+.happy-btn-default:disabled,
+.happy-btn-dashed:disabled,
+.happy-btn-link:disabled,
+.happy-btn-text:disabled {
+  cursor: not-allowed;
+  border-color: #d9d9d9;
+  color: rgba(0, 0, 0, 0.25);
+  background-color: rgba(0, 0, 0, 0.04);
+  box-shadow: none;
+}
+.happy-btn-primary:disabled {
+  border: 1px solid #d9d9d9;
+}
+
+.happy-btn-dashed:disabled {
+  border-style: dashed;
+}
+
+.happy-btn-link:disabled,
+.happy-btn-text:disabled {
+  background-color: transparent;
+  border-color: transparent;
+  border-style: none;
+}
+
+
+// loading
+.happy-btn-loading {
+  opacity: 0.65;
+  cursor: default;
+  
+}
+
+//icon
+.happy-btn-icon {
+  display: inline-flex;
+  margin-inline-end: 8px;
+}
+.happy-btn-default-loading-icon {
+  margin-inline-end: 8px;
+}
+
+//danger
+.happy-btn-primary.happy-btn-danger {
+  background-color: #ff4d4f;
+  box-shadow: 0 2px 0 rgba(255, 38, 5, 0.06);
+  color: #fff;
+}
+.happy-btn-default.happy-btn-danger, .happy-btn-dashed.happy-btn-danger {
+  color: #ff4d4f;
+  border-color: #ff4d4f;
+}
+.happy-btn-text.happy-btn-danger, .happy-btn-link.happy-btn-danger {
+  color: #ff4d4f;
+}
+
+.happy-btn-text.happy-btn-danger:not(:disabled):not(.happy-btn-disabled):hover {
+  color: #ff7875;
+  background-color: #fff2f0;
+}
+.happy-btn-link.happy-btn-danger:not(:disabled):not(.happy-btn-disabled):hover {
+  color: #ff7875;
+}
+.happy-btn-dashed.happy-btn-danger:not(:disabled):not(.happy-btn-disabled):hover {
+  color: #ff7875;
+  border-color: #ffa39e;
+}
+.happy-btn-default.happy-btn-danger:not(:disabled):not(.happy-btn-disabled):hover {
+  color: #ff7875;
+  border-color: #ffa39e;
+}
+.happy-btn-primary.happy-btn-danger:not(:disabled):not(.happy-btn-disabled):hover {
+  background-color: #ff7875;
+}
+
+//ghost
+.happy-btn-primary.happy-btn-ghost:not(:disabled):not(.happy-btn-disabled){
+  color: #1677ff;
+  background-color: transparent;
+  border: 1px solid #1677ff;
+  box-shadow: none;
+}
+.happy-btn-primary.happy-btn-ghost:not(:disabled):not(.happy-btn-disabled):hover{
+  background-color: transparent;
+  color: #4096ff;
+  border-color: #4096ff;
+}
+.happy-btn-default.happy-btn-ghost:not(:disabled):not(.happy-btn-disabled),
+.happy-btn-dashed.happy-btn-ghost:not(:disabled):not(.happy-btn-disabled){
+  color: #ffffff;
+  background-color: transparent;
+  border-color: #ffffff;
+  box-shadow: none;
+}
+.happy-btn-default.happy-btn-ghost:not(:disabled):not(.happy-btn-disabled):hover,
+.happy-btn-dashed.happy-btn-ghost:not(:disabled):not(.happy-btn-disabled):hover{
+  color: #4096ff;
+  border-color: #4096ff;
+  background-color: transparent;
+}
+.happy-btn-primary.happy-btn-danger.happy-btn-ghost:not(:disabled):not(.happy-btn-disabled) {
+  background-color: transparent;
+  color: #ff4d4f;
+  border-color: #ff4d4f;
+}
+.happy-btn-primary.happy-btn-danger.happy-btn-ghost:not(:disabled):not(.happy-btn-disabled):hover {
+  background-color: transparent;
+  color: #ff7875;
+  border-color: #ff7875;
+}
+
+//block
+.happy-btn-block {
+  width: 100%;
+}
