@@ -9,58 +9,17 @@ mobile: false
 toc: content
 ---
 
-<h1>LazyLoad</h1>
+# LazyLoad
 对特定内容进行监测，出现时静态加载。
 
 何时使用：
 - 常用于长列表、SPA首页中，对数据进行懒加载，从而优化页面
 
-```jsx
-/**
- * title: 基本使用
- * description: 懒加载基本使用
- */
+## 基本使用
 
-import React from 'react';
-import { LazyLoad } from 'happy-ui';
-
-export default () => {
-  return (
-    <div style={{
-      height: '200px',
-      overflow: 'auto'
-    }}>
-      <p>Hello Joylne!</p>
-      <p>Hello Joylne!</p>
-      <p>Hello Joylne!</p>
-      <p>Hello Joylne!</p>
-      <p>Hello Joylne!</p>
-      <p>Hello Joylne!</p>
-      <p>Hello Joylne!</p>
-      <p>Hello Joylne!</p>
-      <p>Hello Joylne!</p>
-      <p>Hello Joylne!</p>
-      <p>Hello Joylne!</p>
-      <p>Hello Joylne!</p>
-      <p>Hello Joylne!</p>
-      <p>Hello Joylne!</p>
-      <p>Hello Joylne!</p>
-      <p>Hello Joylne!</p>
-      <p>Hello Joylne!</p>
-      <p>Hello Joylne!</p>
-      <p style={{color: 'red'}}>底部懒加载....</p>
-      <LazyLoad delay={1000}>
-        <p>happy-ui</p>
-        <p>happy-ui</p>
-        <p>happy-ui</p>
-        <p>happy-ui</p>
-        <p>happy-ui</p>
-        <p>happy-ui</p>
-      </LazyLoad>
-    </div>
-  );
-}
-```
+懒加载基本使用
+ 
+<code src='./demos/demo1.tsx'></code>
 
 ## API
 | 属性 | 类型               | 默认值   | 必填 | 说明 |

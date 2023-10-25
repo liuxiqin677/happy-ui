@@ -9,228 +9,44 @@ mobile: false
 toc: content
 ---
 
-<h1>Message</h1>
+# Message
 全局展示操作反馈信息。
 
 何时使用
 - 可提供成功、警告和错误等反馈信息。
 - 顶部居中显示并自动消失，是一种不打断用户操作的轻量级提示方式。
 
-```jsx
-/**
- * title: API调用
- * description: 通过 `Message.api` 来创建 Message
- */
-import React, { useState } from 'react';
-import { Message, Button, Space } from 'happy-ui';
 
-export default () => { 
-  return (
-    <Space>
-      <Button 
-        type='primary' 
-        onClick={() => {
-          Message.info({
-            content: 'hello Happy-ui',
-          })
-        }}
-      >
-        Info Message
-      </Button>
-    </Space>
-  )
-}
-```
+## 基本使用
+ 
+通过 `Message.api` 来创建 Message
+ 
+<code src='./demos/demo1.tsx'></code>
 
-```jsx
-/**
- * title: 其他提示类型
- * description: 包括成功、失败、警告。
- */
-import React, { useState } from 'react';
-import { Message, Button, Space } from 'happy-ui';
+## 其他提示类型
+ 
+包括成功、失败、警告。
+ 
+<code src='./demos/demo2.tsx'></code>
 
-export default () => { 
-  return (
-    <Space>
-      <Button 
-        style={{color: '#1677ff'}}
-        onClick={() => {
-          Message.info({
-            content: 'hello Happy-ui',
-          })
-        }}
-      >
-        Info Message
-      </Button>
-      <Button 
-        style={{color: '#ff4d4f'}}
-        onClick={() => {
-          Message.error({
-            content: 'hello Happy-ui',
-          })
-        }}
-      >
-        Error Message
-      </Button>
-      <Button 
-        style={{color: '#52c41a'}}
-        onClick={() => {
-          Message.success({
-            content: 'hello Happy-ui',
-          })
-        }}
-      >
-        Success Message
-      </Button>
-      <Button 
-        style={{color: '#faad14'}}
-        onClick={() => {
-          Message.warn({
-            content: 'hello Happy-ui',
-          })
-        }}
-      >
-        Warning Message
-      </Button>
-    </Space>
-  )
-}
-```
+## open API
+ 
+可以通过 `open` API，来弹出消息。`open` API传入的配置与其他 api 相同，只不过可以显示的指示 type。`type` 默认是 'info'。
+ 
+<code src='./demos/demo3.tsx'></code>
 
-```jsx
-/**
- * title: open
- * description: 可以通过 `open` API，来弹出消息。`open` API传入的配置与其他 api 相同，只不过可以显示的指示 type。`type` 默认是 'info'。
- */
-import React, { useState } from 'react';
-import { Message, Button, Space } from 'happy-ui';
+## 修改延时
 
-export default () => { 
-  return (
-    <Space>
-      <Button 
-        type='primary'
-        onClick={() => {
-          Message.open({
-            content: 'hello Happy-ui',
-          })
-        }}
-      >
-        Default (Info) Message
-      </Button>
-      <Button 
-        onClick={() => {
-          Message.open({
-            type: 'success',
-            content: 'hello Happy-ui',
-          })
-        }}
-      >
-        Success Message
-      </Button>
-      <Button 
-        onClick={() => {
-          Message.success({
-            type: 'error',
-            content: 'hello Happy-ui',
-          })
-        }}
-      >
-        Error Message
-      </Button>
-      <Button 
-        onClick={() => {
-          Message.warn({
-            type: 'warning',
-            key: 'open_warning',
-            content: 'hello Happy-ui',
-          })
-          setTimeout(() => {
-            Message.update({
-              content: 'hello Jolyne!',
-              key: 'open_warning',
-            })
-          }, 1000)
-        }}
-      >
-        Warning Message
-      </Button>
-    </Space>
-  )
-}
-```
+自定义时长 `10s`，默认时长为 `3s`。当 `duration = 0` 时，不会自动消失
+ 
+<code src='./demos/demo4.tsx'></code>
 
-```jsx
-/**
- * title: 修改延时
- * description: 自定义时长 `10s`，默认时长为 `3s`。当 `duration = 0` 时，不会自动消失
- */
-import React, { useState } from 'react';
-import { Message, Button, Space } from 'happy-ui';
+## 更新消息内容
 
-export default () => { 
-  return (
-    <Space>
-      <Button 
-        type='primary' 
-        onClick={() => {
-          Message.success({
-            content: 'hello Happy-ui',
-            duration: 10
-          })
-        }}
-      >
-        10s delay Message
-      </Button>
-      <Button 
-        onClick={() => {
-          Message.success({
-            content: 'hello Happy-ui',
-            duration: 0
-          })
-        }}
-      >
-        never hide Message
-      </Button>
-    </Space>
-  )
-}
-```
+可以通过唯一的 `key` 来更新内容。
+ 
+<code src='./demos/demo5.tsx'></code>
 
-```jsx
-/**
- * title: 更新消息内容
- * description: 可以通过唯一的 `key` 来更新内容。
- */
-import React, { useState } from 'react';
-import { Message, Button, Space } from 'happy-ui';
-
-export default () => { 
-  return (
-    <Space>
-      <Button 
-        type='primary' 
-        onClick={() => {
-          Message.success({
-            content: 'hello Happy-ui',
-            key: 'update_success',
-          })
-          setTimeout(() => {
-            Message.update({
-              content: 'hello Jolyne!',
-              key: 'update_success',
-              duration: 10
-            })
-          }, 1000)
-        }}
-      >
-        update Message
-      </Button>
-    </Space>
-  )
-}
-```
 
 ## API
 | 属性 | 类型               | 默认值   | 必填 | 说明 |
