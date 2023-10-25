@@ -12,3 +12,4 @@ export { default as Modal } from './Modal';
 export { default as Radio } from './Radio';
 export { default as Space } from './Space';
 export { default as Alert } from './Alert';
+export { default as Flex } from './Flex';

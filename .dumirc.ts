@@ -1,3 +1,10 @@
+/*
+ * @Author: liuxiqin
+ * @Date: 2023-10-24 10:14:16
+ * @LastEditTime: 2023-10-25 17:34:28
+ * @LastEditors: liuxiqin
+ * @Description:
+ */
 import { defineConfig } from 'dumi';
 
 export default defineConfig({
@@ -5,29 +12,29 @@ export default defineConfig({
   themeConfig: {
     name: 'happy-ui',
     nav: [
-      { title: '介绍', link: '/guide' },
-      { title: '组件', link: '/components/Button' }, // components会默认自动对应到src文件夹
-      { title: 'github', link: 'https://github.com/liuxiqin677/happy-ui' },
-    ],
+      { title: '介绍', link: '/docs/guide.md' },
+      { title: '组件', link: '/components/Button' }
+    ]
   },
+  logo: '/logo.svg',
+  favicons: ['/logo.svg'],
   styles: [
     `
-    .dumi-default-header-left {
-      width: 220px !important;
+    .dumi-default-header-content {
+      max-width: 100% !important;
     }
-    .dumi-default-hero-title {
-      font-size: 120px !important;
+    .dumi-default-doc-layout > main {
+      max-width: 100% !important;
     }
     .dumi-default-sidebar {
-      width: 220px !important;
+      width: 300px !important;
+    }
+    .dumi-default-header-left {
+      width: 300px !important;
     }
     .dumi-default-sidebar > dl > dd > a {
       font-size: 14px !important;
     }
-  `,
+    `,
   ],
-  logo: '/logo.svg',
-  favicons: ['/logo.svg'],
-  // 取消打包静态单个组件库和函数工具
-  exportStatic: false,
 });
