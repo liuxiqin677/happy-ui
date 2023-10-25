@@ -34,3 +34,18 @@ toc: content
 自动换行。
 
 <code src="./demos/demo4.tsx"></code>
+
+## API
+| 属性 | 类型               | 默认值   | 必填 | 说明 |
+| ---- | ------------------| -------- | ---- | ---- |
+| vertical | boolean | false |  false  | flex 主轴的方向是否垂直，使用 flex-direction: column
+| wrap | 参考 [flex-wrap](https://developer.mozilla.org/zh-CN/docs/Web/CSS/flex-wrap) | nowrap |  false  | 设置元素单行显示还是多行显示
+| justify | 参考 [justify-content](https://developer.mozilla.org/zh-CN/docs/Web/CSS/justify-content) | normal |  false  | 设置元素在主轴方向上的对齐方式
+| align | 参考 [align-items](https://developer.mozilla.org/zh-CN/docs/Web/CSS/align-items) | normal |  false  | 设置元素在交叉轴方向上的对齐方式
+| flex | 参考 [flex](https://developer.mozilla.org/zh-CN/docs/Web/CSS/flex) | normal |  false  | flex CSS 简写属性
+| gap | 'small'、'middle'、'large'、string、number | - |  false  | 设置网格之间的间隙
+| className | string | - |  false  | 传入的类名
+| style | CSSProperties | - |  false  | 传入的内联样式
+
+## 思路
+请看我的这篇文章：[Flex组件的注意点](https://juejin.cn/post/7293783188232978444)

@@ -72,6 +72,7 @@ const isFlexShrink = (str: string): boolean => {
   return /^([1-9]+(\.\d+)?)|([0](\.\d+)?)$/.test(str);
 };
 
+
 export interface IFlexProps {
   vertical?: boolean;
   wrap?: string;
