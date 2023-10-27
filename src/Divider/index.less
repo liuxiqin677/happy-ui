@@ -1,0 +1,82 @@
+.happy-divider {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.88);
+  font-size: 14px;
+  line-height: 1.5714285714285714;
+  list-style: none;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  border-block-start: 1px solid rgba(5, 5, 5, 0.06);
+}
+// horizontal
+.happy-divider-horizontal {
+  display: flex;
+  clear: both;
+  width: 100%;
+  min-width: 100%;
+  margin: 24px 0;
+}
+.happy-divider-dashed {
+  background: none;
+  border-color: rgba(5, 5, 5, 0.06);
+  border-style: dashed;
+  border-width: 1px 0 0;
+}
+.happy-divider-horizontal.happy-divider-with-text {
+  display: flex;
+  align-items: center;
+  margin: 16px 0;
+  color: rgba(0, 0, 0, 0.88);
+  font-weight: 500;
+  font-size: 16px;
+  white-space: nowrap;
+  text-align: center;
+  border-block-start: 0 rgba(5, 5, 5, 0.06);
+}
+.happy-divider-horizontal.happy-divider-with-text::before,
+.happy-divider-horizontal.happy-divider-with-text::after {
+  position: relative;
+  width: 50%;
+  border-block-start: 1px solid transparent;
+  border-block-start-color: inherit;
+  border-block-end: 0;
+  transform: translateY(50%);
+  content: '';
+}
+.happy-divider-horizontal.happy-divider-with-text-left::before,
+.happy-divider-horizontal.happy-divider-with-text-right::after {
+  width: 5%;
+}
+.happy-divider-horizontal.happy-divider-with-text-left::after,
+.happy-divider-horizontal.happy-divider-with-text-right::before {
+  width: 95%;
+}
+// vertical
+.happy-divider-vertical {
+  position: relative;
+  top: -0.06em;
+  display: inline-block;
+  height: 0.9em;
+  margin-inline: 8px;
+  margin-block: 0;
+  vertical-align: middle;
+  border-top: 0;
+  border-inline-start: 1px solid rgba(5, 5, 5, 0.06);
+}
+.happy-divider-vertical.happy-divider-dashed {
+  border-inline-start-width: 1px;
+  border-inline-end: 0;
+  border-block-start: 0;
+  border-block-end: 0;
+}
+// plain
+.happy-divier-plain {
+  .happy-divider-inner-text {
+    color: rgba(0, 0, 0, 0.88);
+    font-weight: normal;
+    font-size: 14px;
+  }
+}

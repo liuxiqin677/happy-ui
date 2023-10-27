@@ -1,5 +1,6 @@
-import { Content, Footer, Header, Layout, Sider } from 'happy-ui';
+import { Layout } from 'happy-ui';
 import React from 'react';
+const { Header, Content, Footer, Sider } = Layout;
 
 export default () => {
   return (

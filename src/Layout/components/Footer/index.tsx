@@ -1,18 +1,11 @@
-/*
- * @Author: liuxiqin
- * @Date: 2023-10-19 11:06:32
- * @LastEditTime: 2023-10-19 11:06:37
- * @LastEditors: liuxiqin
- * @Description:
- */
-import React, { FC, memo, useMemo, CSSProperties } from 'react';
+import React, { CSSProperties, FC, memo, useMemo } from 'react';
 import './index.less';
 
-interface FooterProps {
+export interface FooterProps {
   extraStyle?: CSSProperties;
   children?: Element | undefined | string | any;
 }
-const Footer: FC<FooterProps> = (props) => {
+const FooterComponent: FC<FooterProps> = (props) => {
   const { children, extraStyle } = props;
 
   const propsStyle = useMemo(() => {
@@ -28,4 +21,4 @@ const Footer: FC<FooterProps> = (props) => {
     </div>
   );
 };
-export default memo(Footer);
+export default memo(FooterComponent);

@@ -1,0 +1,26 @@
+.happy-skeleton.happy-skeleton-element {
+  .happy-skeleton-avatar.happy-skeleton-avatar-active,
+  .happy-skeleton-button.happy-skeleton-button-active,
+  .happy-skeleton-input.happy-skeleton-input-active,
+  .happy-skeleton-image.happy-skeleton-image-active {
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.06) 25%,
+      rgba(0, 0, 0, 0.15) 37%,
+      rgba(0, 0, 0, 0.06) 63%
+    );
+    background-size: 400% 100%;
+    animation-name: happy-skeleton-loading;
+    animation-duration: 1.4s;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+  }
+}
+@keyframes happy-skeleton-loading {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
