@@ -1,0 +1,95 @@
+[class^='happy-skeleton'] {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  font-size: 14px;
+  box-sizing: border-box;
+}
+.happy-skeleton {
+  display: table;
+  width: 100%;
+  .happy-skeleton-header {
+    display: table-cell;
+    padding-inline-end: 16px;
+    vertical-align: top;
+    .happy-skeleton-avatar {
+      display: inline-block;
+      vertical-align: top;
+      background: rgba(0, 0, 0, 0.06);
+      width: 32px;
+      height: 32px;
+      line-height: 32px;
+    }
+    .happy-skeleton-avatar.happy-skeleton-avatar-circle {
+      border-radius: 50%;
+    }
+    .happy-skeleton-avatar-lg {
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+    }
+    .happy-skeleton-avatar-sm {
+      width: 24px;
+      height: 24px;
+      line-height: 24px;
+    }
+  }
+  .happy-skeleton-content {
+    display: table-cell;
+    width: 100%;
+    vertical-align: top;
+    .happy-skeleton-title {
+      width: 38%;
+      height: 16px;
+      background: rgba(0, 0, 0, 0.06);
+      border-radius: 4px;
+    }
+    .happy-skeleton-paragraph {
+      padding: 0;
+    }
+  }
+}
+.happy-skeleton.happy-skeleton-element {
+  display: inline-block;
+  width: auto;
+}
+.happy-skeleton
+  .happy-skeleton-content
+  .happy-skeleton-title
+  + .happy-skeleton-paragraph {
+  margin-block-start: 24px;
+}
+.happy-skeleton .happy-skeleton-content .happy-skeleton-paragraph > li {
+  width: 100%;
+  height: 16px;
+  list-style: none;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 4px;
+}
+.happy-skeleton .happy-skeleton-content .happy-skeleton-paragraph > li + li {
+  margin-block-start: 16px;
+}
+//active
+.happy-skeleton.happy-skeleton-active .happy-skeleton-title,
+.happy-skeleton.happy-skeleton-active .happy-skeleton-avatar,
+.happy-skeleton.happy-skeleton-active .happy-skeleton-paragraph > li {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.06) 25%,
+    rgba(0, 0, 0, 0.15) 37%,
+    rgba(0, 0, 0, 0.06) 63%
+  );
+  background-size: 400% 100%;
+  animation-name: happy-skeleton-loading;
+  animation-duration: 1.4s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+}
+@keyframes happy-skeleton-loading {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}

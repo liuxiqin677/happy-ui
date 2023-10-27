@@ -1,19 +1,12 @@
-/*
- * @Author: liuxiqin
- * @Date: 2023-10-19 11:08:57
- * @LastEditTime: 2023-10-19 11:14:24
- * @LastEditors: liuxiqin
- * @Description:
- */
 import React, { CSSProperties, FC, memo, useMemo } from 'react';
 import './index.less';
 
-interface SliderProps {
+export interface SliderProps {
   row?: number;
   extraStyle?: CSSProperties;
   children?: Element | undefined | string | any;
 }
-const Sider: FC<SliderProps> = (props) => {
+const SiderComponent: FC<SliderProps> = (props) => {
   const { row, extraStyle } = props;
 
   const sliderRow = useMemo(() => {
@@ -38,4 +31,4 @@ const Sider: FC<SliderProps> = (props) => {
     </div>
   );
 };
-export default memo(Sider);
+export default memo(SiderComponent);

@@ -1,5 +1,4 @@
 import cs from 'classnames';
-// import { GroupContext } from 'happy-ui/RadioGroup';
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 import RadioButton from '../RadioButton/index';
 import RadioGroup, { GroupContext } from '../RadioGroup/index';
@@ -13,7 +12,7 @@ export interface IRadioProps {
   children?: any;
 }
 
-const Radio: React.FC<IRadioProps> = ({
+const InternalRadio: React.FC<IRadioProps> = ({
   disabled = false,
   value,
   checked = false,
@@ -75,6 +74,13 @@ const Radio: React.FC<IRadioProps> = ({
     </label>
   );
 };
+
+type CompoundedComponent = React.ForwardRefExoticComponent<IRadioProps> & {
+  Button: typeof RadioButton;
+  Group: typeof RadioGroup;
+};
+
+const Radio = InternalRadio as CompoundedComponent;
 
 Radio.Group = RadioGroup;
 

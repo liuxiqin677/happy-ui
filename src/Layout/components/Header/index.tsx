@@ -1,18 +1,11 @@
-/*
- * @Author: liuxiqin
- * @Date: 2023-10-19 11:07:48
- * @LastEditTime: 2023-10-19 11:07:53
- * @LastEditors: liuxiqin
- * @Description:
- */
-import React, { FC, memo, useMemo, CSSProperties } from 'react';
+import React, { CSSProperties, FC, memo, useMemo } from 'react';
 import './index.less';
 
-interface HeaderProps {
+export interface HeaderProps {
   extraStyle?: CSSProperties;
   children?: Element | undefined | string | any;
 }
-const Header: FC<HeaderProps> = (props) => {
+const HeaderComponent: FC<HeaderProps> = (props) => {
   const { children, extraStyle } = props;
 
   const propsStyle = useMemo(() => {
@@ -28,4 +21,4 @@ const Header: FC<HeaderProps> = (props) => {
     </div>
   );
 };
-export default memo(Header);
+export default memo(HeaderComponent);

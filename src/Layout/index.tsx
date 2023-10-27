@@ -1,19 +1,16 @@
-/*
- * @Author: liuxiqin
- * @Date: 2023-10-19 10:40:54
- * @LastEditTime: 2023-10-19 11:36:14
- * @LastEditors: liuxiqin
- * @Description:
- */
-import React, { FC, memo, useMemo, CSSProperties } from 'react';
+import React, { CSSProperties, FC, useMemo } from 'react';
+import ContentComponent from './components/Content';
+import FooterComponent from './components/Footer';
+import HeaderComponent from './components/Header';
+import SiderComponent from './components/Sider';
 import './index.less';
 
-interface layoutProps {
+export interface layoutProps {
   children?: any;
   extraStyle?: CSSProperties;
 }
 
-const Layout: FC<layoutProps> = (props) => {
+const InternalLayout: FC<layoutProps> = (props) => {
   const { children, extraStyle } = props;
 
   const propsStyles = useMemo(() => {
@@ -30,4 +27,18 @@ const Layout: FC<layoutProps> = (props) => {
   );
 };
 
-export default memo(Layout);
+type CompoundedComponent = React.ForwardRefExoticComponent<layoutProps> & {
+  Content: typeof ContentComponent;
+  Header: typeof HeaderComponent;
+  Sider: typeof SiderComponent;
+  Footer: typeof FooterComponent;
+};
+
+const Layout = InternalLayout as CompoundedComponent;
+
+Layout.Content = ContentComponent;
+Layout.Header = HeaderComponent;
+Layout.Sider = SiderComponent;
+Layout.Footer = FooterComponent;
+
+export default Layout;

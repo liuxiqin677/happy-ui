@@ -1,19 +1,12 @@
-/*
- * @Author: liuxiqin
- * @Date: 2023-10-19 11:04:58
- * @LastEditTime: 2023-10-19 11:08:47
- * @LastEditors: liuxiqin
- * @Description:
- */
-import React, { FC, memo, useMemo, CSSProperties } from 'react';
+import React, { CSSProperties, FC, memo, useMemo } from 'react';
 import './index.less';
 
-interface ContentProps {
+export interface ContentProps {
   row?: number;
   extraStyle?: CSSProperties;
   children?: Element | undefined | string | any;
 }
-const Content: FC<ContentProps> = (props) => {
+const ContentComponent: FC<ContentProps> = (props) => {
   const { children, row, extraStyle } = props;
 
   const contentRow = useMemo(() => {
@@ -24,7 +17,7 @@ const Content: FC<ContentProps> = (props) => {
     }
     return {};
   }, [row]);
-  
+
   const propsStyle = useMemo(() => {
     if (extraStyle) {
       return extraStyle;
@@ -41,4 +34,4 @@ const Content: FC<ContentProps> = (props) => {
     </div>
   );
 };
-export default memo(Content);
+export default memo(ContentComponent);
