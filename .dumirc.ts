@@ -20,6 +20,9 @@ export default defineConfig({
   favicons: ['/logo.svg'],
   styles: [
     `
+    .dumi-default-doc-layout {
+      overflow-x: hidden;
+    }
     .dumi-default-header-content {
       max-width: 100% !important;
     }

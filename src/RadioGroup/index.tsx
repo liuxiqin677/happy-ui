@@ -24,7 +24,7 @@ export interface IRadioGroupProps {
   disabled?: boolean;
   optionType?: 'default' | 'button';
   size?: 'large' | 'middle' | 'small';
-  buttonStyle: 'outline' | 'solid';
+  buttonStyle?: 'outline' | 'solid';
   className?: string;
   style?: CSSProperties;
   children?: any;
