@@ -9,7 +9,7 @@ mobile: false
 toc: content
 ---
 
-<h1>Input</h1>
+# Input
 通过鼠标或键盘输入内容，是最基础的表单域的包装。
 
 何时使用
