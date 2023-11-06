@@ -1,10 +1,3 @@
-/*
- * @Author: liuxiqin
- * @Date: 2023-10-12 14:49:27
- * @LastEditTime: 2023-10-20 14:37:39
- * @LastEditors: liuxiqin
- * @Description:
- */
 import cs from 'classnames';
 import Radio from 'happy-ui/Radio';
 import RadioButton from 'happy-ui/RadioButton';

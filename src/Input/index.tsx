@@ -1,12 +1,16 @@
-/*
- * @Author: liuxiqin
- * @Date: 2023-10-09 16:03:46
- * @LastEditTime: 2023-10-24 16:36:38
- * @LastEditors: liuxiqin
- * @Description:
- */
 import cs from 'classnames';
-import React, { CSSProperties, FC, ReactNode, useMemo, useState } from 'react';
+import { ctx } from 'happy-ui/Form';
+import React, {
+  CSSProperties,
+  FC,
+  ReactNode,
+  useContext,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import './index.less';
 
 export type InputSize = 'large' | 'middle' | 'small';
@@ -14,6 +18,7 @@ export type InputSize = 'large' | 'middle' | 'small';
 export type Type = 'input' | 'textarea' | 'password';
 
 export interface IProps {
+  width?: number;
   type?: Type;
   addonAfter?: ReactNode | string;
   addonBefore?: ReactNode | string;
@@ -37,6 +42,10 @@ interface InternalInputProps extends IProps {
   inputClassNames: string;
   setCurrentCount: (value: number) => void;
 }
+interface InternalInputRef {
+  getValue: () => any;
+  reset: () => void;
+}
 
 type TextAreaType = Pick<
   IProps,
@@ -57,20 +66,29 @@ export interface ITextAreaProps extends TextAreaType {
   setCurrentCount?: (value: number) => void;
 }
 
-const InputComponent = React.memo(
-  ({
-    id,
-    disabled,
-    className,
-    inputClassNames,
-    styles,
-    placeholder,
-    value,
-    maxLength,
-    setCurrentCount,
-    onChange,
-  }: InternalInputProps) => {
+const InputComponent = React.forwardRef<InternalInputRef, InternalInputProps>(
+  (
+    {
+      id,
+      disabled,
+      className,
+      inputClassNames,
+      styles,
+      placeholder,
+      value,
+      maxLength,
+      setCurrentCount,
+      onChange,
+    },
+    ref,
+  ) => {
     const [currentValue, setCurrentValue] = useState<string>('');
+
+    useImperativeHandle(ref, () => ({
+      getValue: () => currentValue,
+      reset: () => setCurrentValue(''),
+    }));
+
     return (
       <input
         id={id}
@@ -93,22 +111,29 @@ const InputComponent = React.memo(
   },
 );
 
-const TextAreaComponent = React.memo(
-  ({
-    bordered,
-    disabled,
-    className,
-    styles,
-    value,
-    maxLength,
-    placeholder,
-    cols,
-    rows = 4,
-    onChange,
-    setCurrentCount,
-    resizeable,
-  }: ITextAreaProps) => {
+const TextAreaComponent = React.forwardRef<InternalInputRef, ITextAreaProps>(
+  (
+    {
+      bordered,
+      disabled,
+      className,
+      styles,
+      value,
+      maxLength,
+      placeholder,
+      cols,
+      rows = 4,
+      onChange,
+      setCurrentCount,
+      resizeable,
+    },
+    ref,
+  ) => {
     const [currentValue, setCurrentValue] = useState<string>('');
+    useImperativeHandle(ref, () => ({
+      getValue: () => currentValue,
+      reset: () => setCurrentValue(''),
+    }));
 
     const textAreaClassNames = useMemo(() => {
       return cs({
@@ -145,6 +170,7 @@ const TextAreaComponent = React.memo(
 );
 
 const Input: FC<IProps> = ({
+  width,
   type = 'input',
   addonAfter,
   addonBefore,
@@ -163,7 +189,9 @@ const Input: FC<IProps> = ({
   rows = 4,
   resizeable = true,
 }) => {
+  const formCtx: any = useContext(ctx);
   const [currentCount, setCurrentCount] = useState<number>(0);
+  const inputRef = useRef<InternalInputRef>(null);
 
   const inputClassNames = useMemo(() => {
     return cs({
@@ -182,6 +210,20 @@ const Input: FC<IProps> = ({
     });
   }, [showCount, addonAfter, addonBefore]);
 
+  // 监听 form 组件的重置操作
+  useEffect(() => {
+    if (formCtx.reset) {
+      inputRef.current?.reset();
+    }
+  }, [formCtx.reset]);
+
+  // 监听 form 组件的 onSubmit 操作
+  useEffect(() => {
+    if (formCtx.submitStatus) {
+      formCtx.getChildVal(inputRef.current?.getValue());
+    }
+  }, [formCtx.submitStatus]);
+
   return (
     <>
       {type === 'input' && (
@@ -194,16 +236,22 @@ const Input: FC<IProps> = ({
           {showCount ? (
             <div className="happy-input-affix-group">
               <InputComponent
+                ref={inputRef}
                 id={id}
                 disabled={disabled}
                 className={className}
                 inputClassNames={inputClassNames}
-                styles={styles}
+                styles={{
+                  ...(width ? { width: `${width}px` } : {}),
+                  ...styles,
+                }}
                 placeholder={placeholder}
                 value={value}
                 maxLength={maxLength}
                 setCurrentCount={(value: number) => setCurrentCount(value)}
-                onChange={(value: string) => onChange?.(value)}
+                onChange={(value: string) => {
+                  formCtx.onChange?.(value);
+                }}
               />
               <span className="happy-input-suffix">
                 {currentCount}
@@ -212,11 +260,15 @@ const Input: FC<IProps> = ({
             </div>
           ) : (
             <InputComponent
+              ref={inputRef}
               id={id}
               disabled={disabled}
               className={className}
               inputClassNames={inputClassNames}
-              styles={styles}
+              styles={{
+                ...(width ? { width: `${width}px` } : {}),
+                ...styles,
+              }}
               placeholder={placeholder}
               value={value}
               maxLength={maxLength}
@@ -236,8 +288,12 @@ const Input: FC<IProps> = ({
           {showCount ? (
             <div className="happy-textArea-group">
               <TextAreaComponent
+                ref={inputRef}
                 maxLength={maxLength}
-                styles={styles}
+                styles={{
+                  ...(width ? { width: `${width}px` } : {}),
+                  ...styles,
+                }}
                 className={className}
                 value={value}
                 bordered={bordered}
@@ -254,8 +310,12 @@ const Input: FC<IProps> = ({
             </div>
           ) : (
             <TextAreaComponent
+              ref={inputRef}
               maxLength={maxLength}
-              styles={styles}
+              styles={{
+                ...(width ? { width: `${width}px` } : {}),
+                ...styles,
+              }}
               className={className}
               value={value}
               bordered={bordered}
