@@ -1,0 +1,68 @@
+.happy-form {
+  position: relative;
+
+  .happy-form-disabled {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  .happy-form-item {
+    position: relative;
+    display: flex;
+    margin-bottom: 20px;
+    font-size: 14px;
+
+    &-label {
+      position: relative;
+      top: 5px;
+      min-width: 100px;
+      margin-right: 20px;
+      color: #4e5969;
+      text-align: right;
+
+      svg {
+        position: relative;
+        bottom: 2px;
+        margin-right: 4px;
+        color: f53f3f;
+      }
+    }
+
+    &-disabled {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    .hide-rule-label,
+    .show-rule-label {
+      position: absolute;
+      bottom: calc(-1 * 20px);
+      left: 0;
+      color: #f53f3f;
+      font-size: 12px;
+      opacity: 0;
+      transition: 0.2s linear;
+    }
+
+    .hide-rule-label {
+      opacity: 0;
+    }
+
+    .show-rule-label {
+      opacity: 1;
+    }
+  }
+}

@@ -9,7 +9,7 @@ mobile: false
 toc: content
 ---
 
-<h1>InputNumber</h1>
+# InputNumber
 通过鼠标或键盘，输入范围内的数值。
 
 何时使用
