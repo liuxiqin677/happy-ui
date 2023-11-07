@@ -7,7 +7,6 @@ const options = [
   ];
 
 export default () => {
-  const form = Form.useForm();
   const formRef = useRef();
 
   const [disabled, setDisabled] = useState<boolean>(true);
@@ -30,17 +29,6 @@ export default () => {
         </Form.Item>
         <Form.Item label="Post" field="post">
           <Input placeholder="Please enter your post" width={300} />
-        </Form.Item>
-        <Form.Item wrapperTol={5}>
-          <Space>
-            <Button type="primary">Submit</Button>
-            <Button
-              onClick={() => form.resetFields(formRef)}
-              style={{ margin: '0 10px' }}
-            >
-              Reset
-            </Button>
-          </Space>
         </Form.Item>
       </Form>
     </Space>

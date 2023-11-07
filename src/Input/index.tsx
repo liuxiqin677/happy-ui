@@ -250,7 +250,7 @@ const Input: FC<IProps> = ({
                 maxLength={maxLength}
                 setCurrentCount={(value: number) => setCurrentCount(value)}
                 onChange={(value: string) => {
-                  formCtx.onChange?.(value);
+                  onChange?.(value);
                 }}
               />
               <span className="happy-input-suffix">
