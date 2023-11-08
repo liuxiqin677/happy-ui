@@ -57,3 +57,18 @@ toc: content
 可以在右上角自定义操作项。
 
 <code src="./demos/demo7.tsx"></code>
+
+## API
+
+| 属性 | 类型               | 默认值   | 必填 | 说明 |
+| ---- | ------------------| -------- | ---- | ---- |
+| icon | ReactNode | - |  false  | 自定义icon
+| type | 'success'、'info'、'warning'、'error' | 'info'；当 banner 为 true 时是 warning |  false  | 警告提示类型
+| message | string | - |  false  | 消息 
+| description | string | -|  false  | 描述 
+| action | ReactNode | - |  false  | 自定义操作 
+| closable | boolean | false |  false  | 是否展示关闭按钮 
+| closeIcon | ReactNode | boolean | false |  false  | 默认不展示关闭按钮，也可以自定义关按钮 
+| showIcon | boolean | - |  false  | 是否显示默认icon
+| banner | boolean | - |  false  | 是否是 banner 类型的警告提示
+| onClose | Function | - |  false  | 关闭警告提示的回调

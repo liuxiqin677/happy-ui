@@ -12,3 +12,4 @@ export { default as Skeleton } from './Skeleton';
 export { default as Space } from './Space';
 export { default as DatePicker } from './DatePicker';
 export { default as Form } from './Form';
+export { default as Avatar } from './Avatar';

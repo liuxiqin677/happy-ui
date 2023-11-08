@@ -1,0 +1,72 @@
+@happy-avatar-size: 40px;
+@happy-avatar-dialog-size: 20px;
+
+.happy-avatar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: @happy-avatar-size;
+  height: @happy-avatar-size;
+  overflow: hidden;
+  color: #fff;
+  font-size: 12px;
+  background-color: #c9cdd4;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .button-dialog {
+    position: absolute;
+    right: -2px;
+    bottom: -2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: @happy-avatar-dialog-size;
+    height: @happy-avatar-dialog-size;
+    background-color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.2s linear;
+
+    &:hover {
+      background-color: #e4e6ed;
+    }
+  }
+
+  .dialog {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(94, 91, 91, 0%);
+    cursor: pointer;
+    transition: 0.2s linear;
+
+    .icon {
+      opacity: 0;
+      transition: 0.2s linear;
+    }
+
+    &:hover {
+      background-color: rgba(94, 91, 91, 70%);
+
+      .icon {
+        opacity: 0.8;
+      }
+    }
+  }
+}
+.happy-avatar.happy-avatar-circle {
+  border-radius: 50%;
+}
+.happy-avatar.happy-avatar-square {
+  border-radius: 5px;
+}
