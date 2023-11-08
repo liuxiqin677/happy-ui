@@ -56,11 +56,11 @@ export interface IFormProps {
   children: ReactNode;
   formField?: any;
   disabled?: boolean;
-//   useForm?: Function;
-//   onSubmit?: Function;
-//   resetFields?: Function;
-//   validateFields?: Function;
-//   useFormContext?: Function;
+  // useForm?: Function;
+  // onSubmit?: Function;
+  // resetFields?: Function;
+  // validateFields?: Function;
+  // useFormContext?: Function;
 }
 
 const InternalForm: FC<IFormProps> = ({

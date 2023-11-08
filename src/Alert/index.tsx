@@ -1,10 +1,3 @@
-/*
- * @Author: liuxiqin
- * @Date: 2023-10-20 15:31:54
- * @LastEditTime: 2023-10-20 16:37:05
- * @LastEditors: liuxiqin
- * @Description:
- */
 import cs from 'classnames';
 import React, { ReactNode, useMemo, useState } from 'react';
 import ErrorIcon from '../../components/ErrorIcon';
