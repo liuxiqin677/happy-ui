@@ -1,333 +1,207 @@
 import cs from 'classnames';
-import { ctx } from 'happy-ui/Form';
-import React, {
-  CSSProperties,
-  FC,
-  ReactNode,
-  useContext,
-  useEffect,
-  useImperativeHandle,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import React, { FC, useContext, useEffect, useMemo, useState } from 'react';
+import ClearIcon from '../../components/ClearIcon';
+import DownOutlined from '../../components/DownOutlined';
+import EyeOutlined from '../../components/EyeOutlined';
+import UpOutlined from '../../components/UpOutlined';
+import { ctx } from '../Form';
 import './index.less';
+import { InputProps } from './interface';
 
-export type InputSize = 'large' | 'middle' | 'small';
-
-export type Type = 'input' | 'textarea' | 'password';
-
-export interface IProps {
-  width?: number;
-  type?: Type;
-  addonAfter?: ReactNode | string;
-  addonBefore?: ReactNode | string;
-  placeholder?: string;
-  bordered?: boolean;
-  disabled?: boolean;
-  id?: string;
-  maxLength?: number;
-  showCount?: boolean;
-  styles?: CSSProperties;
-  className?: string;
-  size?: InputSize;
-  value?: string;
-  onChange?: (value: string) => void;
-  cols?: number;
-  rows?: number;
-  resizeable?: boolean;
-}
-
-interface InternalInputProps extends IProps {
-  inputClassNames: string;
-  setCurrentCount: (value: number) => void;
-}
-interface InternalInputRef {
-  getValue: () => any;
-  reset: () => void;
-}
-
-type TextAreaType = Pick<
-  IProps,
-  | 'bordered'
-  | 'disabled'
-  | 'className'
-  | 'styles'
-  | 'value'
-  | 'maxLength'
-  | 'placeholder'
-  | 'onChange'
-  | 'cols'
-  | 'rows'
-  | 'resizeable'
->;
-
-export interface ITextAreaProps extends TextAreaType {
-  setCurrentCount?: (value: number) => void;
-}
-
-const InputComponent = React.forwardRef<InternalInputRef, InternalInputProps>(
-  (
-    {
-      id,
-      disabled,
-      className,
-      inputClassNames,
-      styles,
-      placeholder,
-      value,
-      maxLength,
-      setCurrentCount,
-      onChange,
-    },
-    ref,
-  ) => {
-    const [currentValue, setCurrentValue] = useState<string>('');
-
-    useImperativeHandle(ref, () => ({
-      getValue: () => currentValue,
-      reset: () => setCurrentValue(''),
-    }));
-
-    return (
-      <input
-        id={id}
-        disabled={disabled}
-        type="text"
-        className={`${inputClassNames} ${className ? className : ''}`}
-        style={styles}
-        placeholder={placeholder}
-        value={value || currentValue}
-        onChange={(e) => {
-          if (maxLength !== undefined && e.target.value.length > maxLength) {
-            return;
-          }
-          setCurrentValue(e.target.value);
-          setCurrentCount(e.target.value.length);
-          onChange?.(e.target.value);
-        }}
-      />
-    );
-  },
-);
-
-const TextAreaComponent = React.forwardRef<InternalInputRef, ITextAreaProps>(
-  (
-    {
-      bordered,
-      disabled,
-      className,
-      styles,
-      value,
-      maxLength,
-      placeholder,
-      cols,
-      rows = 4,
-      onChange,
-      setCurrentCount,
-      resizeable,
-    },
-    ref,
-  ) => {
-    const [currentValue, setCurrentValue] = useState<string>('');
-    useImperativeHandle(ref, () => ({
-      getValue: () => currentValue,
-      reset: () => setCurrentValue(''),
-    }));
-
-    const textAreaClassNames = useMemo(() => {
-      return cs({
-        'happy-textArea': true,
-        'happy-textArea-no-borderd': !bordered,
-        'happy-textArea-disabled': disabled,
-      });
-    }, [disabled, bordered]);
-
-    return (
-      <>
-        <textarea
-          style={{
-            ...(!resizeable ? { resize: 'none' } : {}),
-            ...styles,
-          }}
-          className={`${textAreaClassNames} ${className ? className : ''}`}
-          placeholder={placeholder}
-          rows={rows}
-          cols={cols}
-          value={value || currentValue}
-          onChange={(e) => {
-            if (maxLength !== undefined && e.target.value.length > maxLength) {
-              return;
-            }
-            setCurrentCount?.(e.target.value.length);
-            setCurrentValue(e.target.value);
-            onChange?.(e.target.value);
-          }}
-        ></textarea>
-      </>
-    );
-  },
-);
-
-const Input: FC<IProps> = ({
-  width,
-  type = 'input',
-  addonAfter,
-  addonBefore,
-  placeholder,
-  bordered = true,
-  disabled = false,
-  id,
-  maxLength,
-  showCount,
-  styles,
+const Input: FC<InputProps> = ({
   className,
-  size = 'middle',
-  value,
+  style,
+  width = 200,
+  type,
+  disabled = false,
+  placeholder,
+  showClear,
+  showTogglePwd,
+  min,
+  max,
+  step,
   onChange,
-  cols,
-  rows = 4,
-  resizeable = true,
+  onKeyDown,
+  onFocus,
+  onClick,
+  onBlur,
+  onNumberChange,
+  onClear,
+  defaultValue,
+  value
 }) => {
-  const formCtx: any = useContext(ctx);
-  const [currentCount, setCurrentCount] = useState<number>(0);
-  const inputRef = useRef<InternalInputRef>(null);
+  const [iptValue, setIptValue] = useState<string | number>(
+    defaultValue || value || '',
+  );
+  const [pwdIptState, setPwdIptState] = useState(true); // 密码框切换状态
 
-  const inputClassNames = useMemo(() => {
+  const classNames = useMemo(() => {
     return cs({
       'happy-input': true,
-      'happy-input-lg': size === 'large',
-      'happy-input-sm': size === 'small',
-      'happy-input-no-bordered': !bordered,
       'happy-input-disabled': disabled,
-    });
-  }, [disabled, bordered]);
+      className
+    })
+  }, [disabled]);
 
-  const inputWrapperClassName = useMemo(() => {
-    return cs({
-      'happy-input-group': addonAfter || addonBefore,
-      'happy-input-affix-wrapper': showCount,
-    });
-  }, [showCount, addonAfter, addonBefore]);
+  const formCtx: any = useContext(ctx);
 
-  // 监听 form 组件的重置操作
+  const changeIpt = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIptValue(e.target.value);
+    onChange?.(e.target.value);
+  }
+
+  // 失去焦点
+  const blurIpt = () => {
+    if (type === 'num') {
+      const val = Number(iptValue);
+      if (isNaN(val)) {
+        setIptValue('');
+        onChange?.('');
+      } else {
+        const num = getNum(val);
+        if (val !== num) {
+          setIptValue(num);
+          onChange?.(String(num));
+        }
+      }
+    }
+    onBlur?.();
+  };
+
+  // 焦点
+  const focusIpt = () => {
+    onFocus?.(iptValue);
+  };
+
+  // 点击回调
+  const iptHandleClick = () => {
+    onClick?.();
+  };
+
+  // 加
+  const addNum = () => {
+    // 加
+    if (type === 'num' && isNaN(Number(iptValue))) {
+      return setIptValue('');
+    }
+    const stepNum = step || 1;
+    const res = getNum(Number(iptValue) + stepNum);
+    onNumberChange?.(res);
+    setIptValue(res);
+  };
+
+  // 减
+  const lowNum = () => {
+    // 减
+    if (type === 'num' && isNaN(Number(iptValue))) {
+      return setIptValue('');
+    }
+    const stepNum = step || 1;
+    const res = getNum(Number(iptValue) - stepNum);
+    onNumberChange?.(res);
+    setIptValue(res);
+  };
+
+  // 获取数字框范围内的值
+  const getNum = (num: number) => {
+    if (step && typeof max === 'number' && num > max) {
+      return max;
+    }
+    if (step && typeof min === 'number' && num < min) {
+      return min;
+    }
+    return num;
+  };
+
+  // input类型
+  const iptType = useMemo(() => {
+    if (showTogglePwd && type === 'password') {
+      return pwdIptState ? 'password' : 'text';
+    }
+    return type || 'text';
+  }, [type, showTogglePwd, pwdIptState]);
+
+  // 监听Form组件的重置操作
   useEffect(() => {
     if (formCtx.reset) {
-      inputRef.current?.reset();
+      setIptValue('');
     }
   }, [formCtx.reset]);
 
-  // 监听 form 组件的 onSubmit 操作
+  // 监听Form 获取值
   useEffect(() => {
     if (formCtx.submitStatus) {
-      formCtx.getChildVal(inputRef.current?.getValue());
+      formCtx.getChildVal(iptValue);
     }
   }, [formCtx.submitStatus]);
 
   return (
-    <>
-      {type === 'input' && (
-        <div className={inputWrapperClassName}>
-          {typeof addonBefore === 'string' ? (
-            <span className="happy-input-group-addon">{addonBefore}</span>
-          ) : (
-            addonBefore
-          )}
-          {showCount ? (
-            <div className="happy-input-affix-group">
-              <InputComponent
-                ref={inputRef}
-                id={id}
-                disabled={disabled}
-                className={className}
-                inputClassNames={inputClassNames}
-                styles={{
-                  ...(width ? { width: `${width}px` } : {}),
-                  ...styles,
-                }}
-                placeholder={placeholder}
-                value={value}
-                maxLength={maxLength}
-                setCurrentCount={(value: number) => setCurrentCount(value)}
-                onChange={(value: string) => {
-                  onChange?.(value);
-                }}
-              />
-              <span className="happy-input-suffix">
-                {currentCount}
-                {maxLength ? `/${maxLength}` : ''}
-              </span>
-            </div>
-          ) : (
-            <InputComponent
-              ref={inputRef}
-              id={id}
-              disabled={disabled}
-              className={className}
-              inputClassNames={inputClassNames}
-              styles={{
-                ...(width ? { width: `${width}px` } : {}),
-                ...styles,
+    <div
+      className={classNames}
+      style={{
+        width: typeof width === 'number' ? `${width}px` : width,
+        ...style,
+      }}
+    >
+      <input
+        disabled={disabled}
+        className="input"
+        type={iptType}
+        placeholder={placeholder}
+        value={defaultValue || iptValue}
+        onChange={(e) => changeIpt(e)}
+        onBlur={() => blurIpt()}
+        onFocus={() => focusIpt()}
+        onKeyUp={(e) => onKeyDown?.(e)}
+        onClick={() => iptHandleClick()}
+      />
+      {
+        // 可清除
+        (showClear && String(iptValue).length && (
+          <span
+            className="clear-svg input-clear"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIptValue('');
+              onClear && onClear();
+            }}
+          >
+            <ClearIcon />
+          </span>
+        )) ||
+          // 密码框
+          (type === 'password' && showTogglePwd && (
+            <div
+              style={{
+                position: 'absolute',
+                right: '5px',
+                fontSize: '12px',
+                cursor: 'pointer',
               }}
-              placeholder={placeholder}
-              value={value}
-              maxLength={maxLength}
-              setCurrentCount={(value: number) => setCurrentCount(value)}
-              onChange={(value: string) => onChange?.(value)}
-            />
-          )}
-          {typeof addonAfter === 'string' ? (
-            <span className="happy-input-group-addon">{addonAfter}</span>
-          ) : (
-            addonAfter
-          )}
-        </div>
-      )}
-      {type === 'textarea' && (
-        <div className="happy-textArea-group">
-          {showCount ? (
-            <div className="happy-textArea-group">
-              <TextAreaComponent
-                ref={inputRef}
-                maxLength={maxLength}
-                styles={{
-                  ...(width ? { width: `${width}px` } : {}),
-                  ...styles,
-                }}
-                className={className}
-                value={value}
-                bordered={bordered}
-                setCurrentCount={(value: number) => setCurrentCount(value)}
-                onChange={onChange}
-                cols={cols}
-                rows={rows}
-                resizeable={resizeable}
-              />
-              <span className="happy-textArea-suffix">
-                {currentCount}
-                {maxLength ? `/${maxLength}` : ''}
-              </span>
+              onClick={() => setPwdIptState(!pwdIptState)}
+            >
+              <EyeOutlined />
             </div>
-          ) : (
-            <TextAreaComponent
-              ref={inputRef}
-              maxLength={maxLength}
-              styles={{
-                ...(width ? { width: `${width}px` } : {}),
-                ...styles,
-              }}
-              className={className}
-              value={value}
-              bordered={bordered}
-              onChange={onChange}
-              cols={cols}
-              rows={rows}
-              resizeable={resizeable}
-            />
-          )}
-        </div>
-      )}
-    </>
+          )) ||
+          // 数字框
+          (type === 'num' && (
+            <div className="numTags">
+              <div
+                style={{ cursor: 'pointer', fontSize: '10px' }}
+                onClick={addNum}
+              >
+                <UpOutlined />
+              </div>
+              <div
+                style={{ cursor: 'pointer', fontSize: '10px' }}
+                onClick={lowNum}
+              >
+                <DownOutlined />
+              </div>
+            </div>
+          ))
+      }
+    </div>
   );
 };
 
