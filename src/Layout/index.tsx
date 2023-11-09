@@ -1,14 +1,10 @@
-import React, { CSSProperties, FC, useMemo } from 'react';
+import React, { FC, useMemo } from 'react';
 import ContentComponent from './components/Content';
 import FooterComponent from './components/Footer';
 import HeaderComponent from './components/Header';
 import SiderComponent from './components/Sider';
 import './index.less';
-
-export interface layoutProps {
-  children?: any;
-  extraStyle?: CSSProperties;
-}
+import { layoutProps } from './interface';
 
 const InternalLayout: FC<layoutProps> = (props) => {
   const { children, extraStyle } = props;

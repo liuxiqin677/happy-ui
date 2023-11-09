@@ -1,6 +1,7 @@
 import cs from 'classnames';
-import React, { CSSProperties, FC, ReactNode, memo, useMemo } from 'react';
+import React, { CSSProperties, FC, memo, useMemo } from 'react';
 import './index.less';
+import { IFlexProps } from './interface';
 
 // flex 单值时的全局值
 const flexSingleGlobals: string[] = [
@@ -71,19 +72,6 @@ const isFlexBasis = (str: string): boolean => {
 const isFlexShrink = (str: string): boolean => {
   return /^([1-9]+(\.\d+)?)|([0](\.\d+)?)$/.test(str);
 };
-
-
-export interface IFlexProps {
-  vertical?: boolean;
-  wrap?: string;
-  justify?: string;
-  align?: string;
-  flex?: string;
-  gap?: 'small' | 'middle' | 'large' | string | number;
-  children?: ReactNode;
-  style?: CSSProperties;
-  className?: string;
-}
 
 const Flex: FC<IFlexProps> = ({
   vertical = false,

@@ -1,32 +1,8 @@
 import cs from 'classnames';
 import Button from 'happy-ui/Button';
-import React, {
-  CSSProperties,
-  FC,
-  useCallback,
-  useMemo,
-  useState,
-} from 'react';
+import React, { FC, useCallback, useMemo, useState } from 'react';
 import './index.less';
-
-export type TDisplayWeekDay =
-  | 'Mon'
-  | 'Tue'
-  | 'Wed'
-  | 'Thu'
-  | 'Fri'
-  | 'Sat'
-  | 'Sun';
-
-export interface IDatePickerProps {
-  value?: Date;
-  width?: number | string;
-  height?: number | string;
-  style?: CSSProperties;
-  className?: string;
-  startWeekDay?: TDisplayWeekDay;
-  onChange?: (date: Date) => void;
-}
+import { IDatePickerProps } from './interface';
 
 const DatePicker: FC<IDatePickerProps> = ({
   value = new Date(),

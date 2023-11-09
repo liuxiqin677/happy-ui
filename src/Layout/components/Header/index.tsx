@@ -1,10 +1,7 @@
-import React, { CSSProperties, FC, memo, useMemo } from 'react';
+import React, { FC, memo, useMemo } from 'react';
 import './index.less';
+import { HeaderProps } from './interface';
 
-export interface HeaderProps {
-  extraStyle?: CSSProperties;
-  children?: Element | undefined | string | any;
-}
 const HeaderComponent: FC<HeaderProps> = (props) => {
   const { children, extraStyle } = props;
 

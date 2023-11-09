@@ -1,33 +1,8 @@
-/*
- * @Author: liuxiqin
- * @Date: 2023-10-07 11:09:34
- * @LastEditTime: 2023-10-24 11:10:44
- * @Description:
- */
 import cs from 'classnames';
-import React, { CSSProperties, FC, useMemo } from 'react';
+import React, { FC, useMemo } from 'react';
 import LoadingIcon from '../../components/LoadingIcon';
 import './index.less';
-
-export type ButtonType = 'default' | 'primary' | 'dashed' | 'link' | 'text';
-export type ButtonSize = 'small' | 'default' | 'large';
-
-export interface IButtonProps {
-  className?: string;
-  style?: CSSProperties;
-  type?: ButtonType;
-  children?: React.ReactNode;
-  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  size?: ButtonSize;
-  disabled?: boolean;
-  loading?: boolean;
-  icon?: React.ReactNode;
-  danger?: boolean;
-  ghost?: boolean;
-  block?: boolean;
-}
-
-type NativeButtonProps = Omit<React.ButtonHTMLAttributes<HTMLElement>, 'type'>; //原生button接口
+import { IButtonProps, NativeButtonProps } from './interface';
 
 const Button: FC<IButtonProps & NativeButtonProps> = ({
   className = '',

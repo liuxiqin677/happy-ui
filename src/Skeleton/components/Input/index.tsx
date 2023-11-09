@@ -2,14 +2,9 @@ import cs from 'classnames';
 import React, { FC, useMemo } from 'react';
 import '../common.less';
 import './index.less';
+import { SkeletonInputProps } from './interface';
 
-export interface SkeletonButtonProps {
-  active?: boolean;
-  size?: 'large' | 'small' | 'default';
-  block?: boolean;
-}
-
-const InputComponent: FC<SkeletonButtonProps> = ({
+const InputComponent: FC<SkeletonInputProps> = ({
   active = false,
   size = 'default',
   block = false,

@@ -1,11 +1,7 @@
-import React, { CSSProperties, FC, memo, useMemo } from 'react';
+import React, { FC, memo, useMemo } from 'react';
 import './index.less';
+import { ContentProps } from './interface';
 
-export interface ContentProps {
-  row?: number;
-  extraStyle?: CSSProperties;
-  children?: Element | undefined | string | any;
-}
 const ContentComponent: FC<ContentProps> = (props) => {
   const { children, row, extraStyle } = props;
 

@@ -2,10 +2,7 @@ import cs from 'classnames';
 import React, { FC, useMemo } from 'react';
 import '../common.less';
 import './index.less';
-
-export interface SkeletonImageProps {
-  active?: boolean;
-}
+import { SkeletonImageProps } from './interface';
 
 const ImageComponent: FC<SkeletonImageProps> = ({ active = false }) => {
   const skeletonImageWrapperClass = useMemo(() => {

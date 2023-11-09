@@ -1,10 +1,7 @@
-import React, { CSSProperties, FC, memo, useMemo } from 'react';
+import React, { FC, memo, useMemo } from 'react';
 import './index.less';
+import { FooterProps } from './interface';
 
-export interface FooterProps {
-  extraStyle?: CSSProperties;
-  children?: Element | undefined | string | any;
-}
 const FooterComponent: FC<FooterProps> = (props) => {
   const { children, extraStyle } = props;
 

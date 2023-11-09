@@ -1,4 +1,4 @@
-import React, { CSSProperties, ReactNode, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
 import ErrorIcon from '../../components/ErrorIcon';
 import InfoIcon from '../../components/InfoIcon';
@@ -7,42 +7,13 @@ import WarningIcon from '../../components/WarningIcon';
 import { uuid } from '../utils';
 import { useCssClassManager } from './hooks';
 import './index.less';
-
-export type messageType = 'info' | 'warning' | 'error' | 'success';
-
-export type messageInput = (message: IMessageProps) => void;
-
-export type InfoMessageInput = (message: MessageOptions) => void;
-
-export interface IMessageProps {
-  className?: string;
-  content?: ReactNode;
-  duration?: number;
-  icon?: ReactNode;
-  style?: CSSProperties;
-  key?: string | number;
-}
-
-export interface messageQueueItem extends IMessageProps {
-  id: string;
-}
-
-export interface MessageOptions extends IMessageProps {
-  type?: messageType;
-}
-
-export interface BaseMessageOptions extends MessageOptions {
-  id: string;
-}
-
-export interface IBaseMessageObjecProps {
-  info: messageInput;
-  warn: messageInput;
-  error: messageInput;
-  success: messageInput;
-  update: messageInput;
-  open: InfoMessageInput;
-}
+import {
+  BaseMessageOptions,
+  IBaseMessageObjecProps,
+  IMessageProps,
+  MessageOptions,
+  messageQueueItem,
+} from './interface';
 
 const CONTAINER_ID = 'happy-message-container';
 const MESSAGE_QUEUE: Array<messageQueueItem> = [];
