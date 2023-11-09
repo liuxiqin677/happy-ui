@@ -1,34 +1,9 @@
 import cs from 'classnames';
 import Radio from 'happy-ui/Radio';
 import RadioButton from 'happy-ui/RadioButton';
-import React, { createContext, CSSProperties, useMemo } from 'react';
+import React, { createContext, useMemo } from 'react';
 import './index.less';
-
-export type TRadioOptions =
-  | string[]
-  | number[]
-  | Array<{ label: React.ReactNode; value: string; disabled?: boolean }>;
-
-export interface IRadioGroupProps {
-  value?: any;
-  onChange?: (value: any) => void;
-  name?: string;
-  options?: TRadioOptions;
-  disabled?: boolean;
-  optionType?: 'default' | 'button';
-  size?: 'large' | 'middle' | 'small';
-  buttonStyle?: 'outline' | 'solid';
-  className?: string;
-  style?: CSSProperties;
-  children?: any;
-}
-
-export interface IGroupContext {
-  groupValue?: any;
-  groupDisabled?: boolean;
-  name?: string;
-  onGroupChange?: ((value: any) => void) | undefined;
-}
+import { IGroupContext, IRadioGroupProps } from './interface';
 
 export const GroupContext = createContext<IGroupContext>({
   groupValue: undefined,

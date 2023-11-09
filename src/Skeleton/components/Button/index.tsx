@@ -1,14 +1,8 @@
 import cs from 'classnames';
 import React, { FC, useMemo } from 'react';
-import './index.less';
 import '../common.less';
-
-export interface SkeletonButtonProps {
-  active?: boolean;
-  shape?: 'circle' | 'square' | 'round';
-  size?: 'large' | 'small' | 'default';
-  block?: boolean;
-}
+import './index.less';
+import { SkeletonButtonProps } from './interface';
 
 const ButtonCompoent: FC<SkeletonButtonProps> = ({
   active = false,

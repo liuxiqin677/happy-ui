@@ -1,27 +1,8 @@
 import cs from 'classnames';
-import React, {
-  CSSProperties,
-  FC,
-  ReactNode,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-} from 'react';
+import React, { FC, useContext, useEffect, useMemo, useRef } from 'react';
 import AvatarGroup, { AvatarGroupContext } from './Group/Group';
 import './index.less';
-
-export interface IAvatarProps {
-  children?: ReactNode;
-  className?: string;
-  style?: CSSProperties;
-  size?: number;
-  shape?: 'circle' | 'square';
-  autoFixFontSize?: boolean;
-  triggerType?: 'mask' | 'button';
-  triggerIcon?: ReactNode;
-  triggerClick?: Function;
-}
+import { IAvatarProps } from './interface';
 
 const InternalAvatar: FC<IAvatarProps> = ({
   children,

@@ -1,10 +1,3 @@
-/*
- * @Author: liuxiqin
- * @Date: 2023-10-08 15:36:41
- * @LastEditTime: 2023-10-08 15:36:41
- * @LastEditors: liuxiqin
- * @Description:
- */
 import React from 'react';
 
 export type DirectionType = 'ltr' | 'rtl' | undefined;

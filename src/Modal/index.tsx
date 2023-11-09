@@ -1,61 +1,16 @@
-/*
- * @Author: liuxiqin
- * @Date: 2023-10-16 10:19:20
- * @LastEditTime: 2023-10-24 21:25:11
- * @LastEditors: liuxiqin677 2448506794@qq.com
- * @Description:
- */
 import cs from 'classnames';
-import Button, { ButtonType, IButtonProps } from 'happy-ui/Button';
-import React, {
-  CSSProperties,
-  ReactNode,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import React, { ReactNode, useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 import CloseIcon from '../../components/CloseIcon';
 import ErrorIcon from '../../components/ErrorIcon';
 import InfoIcon from '../../components/InfoIcon';
 import SuccessIcon from '../../components/SuccessIcon';
 import WarningIcon from '../../components/WarningIcon';
+import Button from '../Button';
 import './index.less';
+import { IModalProps } from './interface';
 
 let hiddenCount = 0;
-
-export type TModalType = 'confirm' | 'warning' | 'info' | 'error' | 'success';
-
-export interface IModalProps {
-  afterClose?: () => any;
-  className?: string;
-  styles?: {
-    header?: CSSProperties;
-    body?: CSSProperties;
-    footer?: CSSProperties;
-    mask?: CSSProperties;
-  };
-  type?: TModalType;
-  style?: CSSProperties;
-  cancelButtonProps?: IButtonProps;
-  cancelText?: ReactNode;
-  centered?: boolean;
-  closeIcon?: boolean | ReactNode;
-  confirmLoading?: boolean;
-  footer?: ReactNode[];
-  mask?: boolean;
-  maskClosable?: boolean;
-  okButtonProps?: IButtonProps;
-  okText?: ReactNode;
-  okType?: ButtonType;
-  title?: ReactNode;
-  open?: boolean;
-  width?: number;
-  onCancel?: () => any;
-  onOk?: () => any;
-  destroyOnClose?: boolean;
-  children?: ReactNode;
-}
 
 const Modal: React.FC<IModalProps> = ({
   afterClose,

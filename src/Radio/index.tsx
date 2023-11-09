@@ -2,15 +2,8 @@ import cs from 'classnames';
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 import RadioButton from '../RadioButton/index';
 import RadioGroup, { GroupContext } from '../RadioGroup/index';
+import { IRadioProps } from './interface';
 import './index.less';
-
-export interface IRadioProps {
-  disabled?: boolean;
-  value?: any;
-  checked?: boolean;
-  defaultChecked?: boolean;
-  children?: any;
-}
 
 const InternalRadio: React.FC<IRadioProps> = ({
   disabled = false,

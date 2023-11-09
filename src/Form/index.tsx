@@ -1,9 +1,6 @@
 import cs from 'classnames';
 import React, {
-  CSSProperties,
   FC,
-  ReactNode,
-  Ref,
   createContext,
   useCallback,
   useEffect,
@@ -13,25 +10,9 @@ import React, {
 } from 'react';
 import Item from './Item';
 import './index.less';
+import { FromRefFunctions, IFormProps, ruleType } from './interface';
 
 export const ctx = createContext<any>({} as any);
-
-export interface FormComponent {
-  Item: typeof Item;
-}
-
-export interface FromRefFunctions {
-  formRef: string;
-  onSubmit: Function;
-  resetFields: Function;
-  validateFields: Function;
-  useFormContext: Function;
-}
-
-export type fieldListType = {
-  rules?: Array<any>;
-  val?: string;
-};
 
 const collectFormFns: FromRefFunctions = {
   formRef: '',
@@ -40,28 +21,6 @@ const collectFormFns: FromRefFunctions = {
   validateFields: () => {},
   useFormContext: () => {},
 };
-
-export type ruleType = {
-  required?: boolean;
-  maxLength?: number;
-  minLength?: number;
-  message: string;
-  fn?: Function;
-};
-
-export interface IFormProps {
-  style?: CSSProperties;
-  className?: string;
-  layout?: 'horizontal' | 'vertical';
-  children: ReactNode;
-  formField?: any;
-  disabled?: boolean;
-  // useForm?: Function;
-  // onSubmit?: Function;
-  // resetFields?: Function;
-  // validateFields?: Function;
-  // useFormContext?: Function;
-}
 
 const InternalForm: FC<IFormProps> = ({
   className,
@@ -147,19 +106,24 @@ const InternalForm: FC<IFormProps> = ({
       return `.happy-form-item .${key}`;
     }
 
-    function validateRow(isPass:boolean, value: any, key: any , rule: ruleType) {
+    function validateRow(
+      isPass: boolean,
+      value: any,
+      key: any,
+      rule: ruleType,
+    ) {
       if (rule.required && value === '' && isPass) {
         // 必填校验
         isPass = false;
         changeValidateText(getClassNameByKey(key), rule.message, key, ref);
       } else if (
         (rule.maxLength && value.length > rule.maxLength && isPass) ||
-        (rule.minLength && value.length < rule.minLength && isPass) 
+        (rule.minLength && value.length < rule.minLength && isPass)
       ) {
         // 最长字段校验
         isPass = false;
         changeValidateText(getClassNameByKey(key), rule.message, key, ref);
-      } else if ( rule.fn && !rule.fn(value) && isPass) {
+      } else if (rule.fn && !rule.fn(value) && isPass) {
         // 自定义校验函数
         isPass = false;
         changeValidateText(getClassNameByKey(key), rule.message, key, ref);

@@ -2,18 +2,13 @@ import cs from 'classnames';
 import React, { FC, useMemo } from 'react';
 import '../common.less';
 import './index.less';
+import { ISkeletonAvatarProps } from './interface';
 
 export const defaultAvatar = {
   active: false,
   shape: 'circle',
   size: 'large',
 };
-
-export interface ISkeletonAvatarProps {
-  active?: boolean;
-  shape?: 'circle' | 'square';
-  size?: number | 'large' | 'small' | 'default';
-}
 
 const AvatarComponent: FC<ISkeletonAvatarProps> = ({
   active = false,

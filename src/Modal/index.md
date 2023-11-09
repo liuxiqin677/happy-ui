@@ -15,503 +15,66 @@ toc: content
 何时使用
 - 需要用户处理事务，又不希望跳转页面以致打断工作流程时，可以使用 Modal 在当前页面正中打开一个浮层，承载相应的操作。
 
-```jsx
-/**
- * title: 基本使用
- * description: 第一个对话框。
- */
-import React, { useState } from 'react';
-import { Modal, Button } from 'happy-ui';
+## 基本使用
 
-export default () => {
-  const [open, setOpen] = useState(false);
+第一个对话框
 
-  const handleOk = () => {
-    setOpen(false);
-  };
-
-  const handleCancel = () => {
-    setOpen(false);
-  };
-
-  return (
-    <>
-      <Button type='primary' onClick={() => setOpen(true)}>Open Modal</Button>
-      <Modal
-        title='Basic Modal'
-        open={open}
-        onOk={handleOk} 
-        onCancel={handleCancel}
-      >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-      </Modal>
-    </>
-  )
-}
-```
-
-```jsx
-/**
- * title: 异步关闭
- * description: 点击确定后异步关闭对话框，例如提交表单。
- */
-import React, { useState } from 'react';
-import { Modal, Button, Space } from 'happy-ui';
-
-export default () => {
-  const [open, setOpen] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(false);
-
-  const handleOk = () => {
-    setConfirmLoading(true);
-    setTimeout(() => {
-      setConfirmLoading(false);
-      setOpen(false);
-    }, 2000);
-  };
-
-  const handleCancel = () => {
-    setOpen(false);
-  };
-
-  return (
-    <Space direction='vertical'>
-      <Button type='primary' onClick={() => setOpen(true)}>Open Modal</Button>
-      <Modal
-        title='Basic Modal'
-        open={open}
-        onOk={handleOk} 
-        onCancel={handleCancel}
-        confirmLoading={confirmLoading}
-      >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-      </Modal>
-    </Space>
-  )
-}
-```
+<code src='./demos/demo1.tsx'></code>
 
 
-```jsx
-/**
- * title: 自定义页脚
- * description: 更复杂的例子，自定义了页脚的按钮，点击提交后进入 loading 状态，完成后关闭。不需要默认确定取消按钮时，你可以把 `footer 设为 null`。
- */
-import React, { useState } from 'react';
-import { Button, Modal } from 'happy-ui';
+## 异步关闭
 
-export default () => {
-  const [loading, setLoading] = useState(false);
-  const [open, setOpen] = useState(false);
+点击确定后异步关闭对话框，例如提交表单。
 
-  const showModal = () => {
-    setOpen(true);
-  };
+<code src='./demos/demo2.tsx'></code>
 
-  const handleOk = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setOpen(false);
-    }, 3000);
-  };
+## 自定义页脚
 
-  const handleCancel = () => {
-    setOpen(false);
-  };
+更复杂的例子，自定义了页脚的按钮，点击提交后进入 loading 状态，完成后关闭。不需要默认确定取消按钮时，你可以把 `footer 设为 null`。
 
-  return (
-    <>
-      <Button type="primary" onClick={showModal}>
-        Open Modal with customized footer
-      </Button>
-      <Modal
-        open={open}
-        title="Title"
-        onOk={handleOk}
-        onCancel={handleCancel}
-        footer={[
-          <Button key="back" onClick={handleCancel}>
-            Return
-          </Button>,
-          <Button key="submit" type="primary" loading={loading} onClick={handleOk}>
-            Submit
-          </Button>,
-          <Button
-            key="link"
-            href="https://google.com"
-            type="primary"
-            loading={loading}
-            onClick={handleOk}
-          >
-            Search on Google
-          </Button>,
-        ]}
-      >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-      </Modal>
-    </>
-  );
-};
-```
+<code src='./demos/demo3.tsx'></code>
 
-```jsx
-/**
- * title: 国际化
- * description: 设置 `okText` 与 `cancelText` 以自定义按钮文字。
- */
-import React, { useState } from 'react';
-import { Modal, Button } from 'happy-ui';
+## 按钮文字
 
-export default () => {
-  const [open, setOpen] = useState(false);
+设置 `okText` 与 `cancelText` 以自定义按钮文字
 
-  const handleOk = () => {
-    setOpen(false);
-  };
+<code src='./demos/demo4.tsx'></code>
 
-  const handleCancel = () => {
-    setOpen(false);
-  };
+## 自定义位置
 
-  return (
-    <>
-      <Button type='primary' onClick={() => setOpen(true)}>Open Modal</Button>
-      <Modal
-        title='Basic Modal'
-        open={open}
-        onOk={handleOk} 
-        onCancel={handleCancel}
-        okText={'确定确定确定'}
-        cancelText={'取消取消取消'}
-      >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-      </Modal>
-    </>
-  )
-}
-```
+使用 `centered` 或类似 `style.top` 的样式来设置对话框位置。
 
+<code src='./demos/demo5.tsx'></code>
 
-```jsx
-/**
- * title: 自定义位置
- * description: 使用 `centered` 或类似 `style.top` 的样式来设置对话框位置。
- */
-import React, { useState } from 'react';
-import { Modal, Button } from 'happy-ui';
+## 自定义页脚按钮属性
 
-export default () => {
-  const [modal1Open, setModal1Open] = useState(false);
-  const [modal2Open, setModal2Open] = useState(false);
+传入 `okButtonProps` 和 `cancelButtonProps` 可分别自定义确定按钮和取消按钮的 props。
 
-  return (
-    <>
-      <Button type="primary" onClick={() => setModal1Open(true)}>
-        Display a modal dialog at 20px to Top
-      </Button>
-      <Modal
-        title="20px to Top"
-        style={{ top: 20 }}
-        open={modal1Open}
-        onOk={() => setModal1Open(false)}
-        onCancel={() => setModal1Open(false)}
-      >
-        <p>some contents...</p>
-        <p>some contents...</p>
-        <p>some contents...</p>
-      </Modal>
-      <br />
-      <br />
-      <Button type="primary" onClick={() => setModal2Open(true)}>
-        Vertically centered modal dialog
-      </Button>
-      <Modal
-        title="Vertically centered modal dialog"
-        centered
-        open={modal2Open}
-        onOk={() => setModal2Open(false)}
-        onCancel={() => setModal2Open(false)}
-      >
-        <p>some contents...</p>
-        <p>some contents...</p>
-        <p>some contents...</p>
-      </Modal>
-    </>
-  );
-};
-```
+<code src='./demos/demo6.tsx'></code>
 
-```jsx
-/**
- * title: 自定义页脚按钮属性
- * description: 传入 `okButtonProps` 和 `cancelButtonProps` 可分别自定义确定按钮和取消按钮的 props。
- */
-import React, { useState } from 'react';
-import { Modal, Button } from 'happy-ui';
+## 自定义模态框的宽度
 
-export default () => {
-  const [open, setOpen] = useState(false);
+使用 `width` 来设置模态对话框的宽度
 
-  const showModal = () => {
-    setOpen(true);
-  };
+<code src='./demos/demo7.tsx'></code>
 
-  const handleOk = (e: React.MouseEvent<HTMLElement>) => {
-    setOpen(false);
-  };
+## 模态框类型
 
-  const handleCancel = (e: React.MouseEvent<HTMLElement>) => {
-    setOpen(false);
-  };
+使用 `type` 来设置模态对话框的类型，必须配合 `title` 一起使用
 
-  return (
-    <>
-      <Button type="primary" onClick={showModal}>
-        Open Modal with customized button props
-      </Button>
-      <Modal
-        title="Basic Modal"
-        open={open}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        okButtonProps={{ disabled: true }}
-        cancelButtonProps={{ disabled: true }}
-      >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-      </Modal>
-    </>
-  );
-};
-```
+<code src='./demos/demo8.tsx'></code>
 
-```jsx
-/**
- * title: 自定义模态框的宽度
- * description: 使用 `width` 来设置模态对话框的宽度
- */
-import React, { useState } from 'react';
-import { Modal, Button } from 'happy-ui';
+## 自定义内部模块 styles
 
-export default () => {
-  const [open, setOpen] = useState(false);
+通过 `styles` 属性设置弹窗内部区域（`header、body、footer、mask、wrapper`）的 style
 
-  return (
-    <>
-      <Button type="primary" onClick={() => setOpen(true)}>
-        Open Modal of 1000px width
-      </Button>
-      <Modal
-        title="Modal 1000px width"
-        centered
-        open={open}
-        onOk={() => setOpen(false)}
-        onCancel={() => setOpen(false)}
-        width={1000}
-      >
-        <p>some contents...</p>
-        <p>some contents...</p>
-        <p>some contents...</p>
-      </Modal>
-    </>
-  );
-};
-```
+<code src='./demos/demo9.tsx'></code>
 
-```jsx
-/**
- * title: 模态框类型
- * description: 使用 `type` 来设置模态对话框的类型，必须配合 `title` 一起使用
- */
-import React, { useState } from 'react';
-import { Modal, Button, Space } from 'happy-ui';
+## 嵌套 Modal
 
-export default () => {
-  const [open, setOpen] = useState(false);
-  const [type, setType] = useState('confirm');
+嵌套 Modal
 
-  const showModal = (type: 'confirm' | 'warning' | 'info' | 'error' | 'success') => {
-    setType(type);
-    setOpen(true);
-  }
-
-  return (
-    <>
-      <Space>
-        <Button type="primary" onClick={() => showModal('confirm')}>Confirm Modal</Button>
-        <Button type="primary" onClick={() => showModal('warning')}>Warning Modal</Button>
-        <Button type="primary" onClick={() => showModal('info')}>Info Modal</Button>
-        <Button type="primary" onClick={() => showModal('error')}>Error Modal</Button>
-        <Button type="primary" onClick={() => showModal('success')}>Success Modal</Button>
-      </Space>
-      <Modal
-        title={type}
-        open={open}
-        type={type}
-        onOk={() => setOpen(false)}
-        onCancel={() => setOpen(false)}
-      >
-        <p>some contents...</p>
-        <p>some contents...</p>
-        <p>some contents...</p>
-      </Modal>
-    </>
-  );
-};
-```
-
-```jsx
-/**
- * title: 自定义内部模块 styles
- * description: 通过 `styles` 属性设置弹窗内部区域（`header、body、footer、mask、wrapper`）的 style
- */
-import React, { useState } from 'react';
-import { Modal, Button, Space } from 'happy-ui';
-
-export default () => {
-  const [open, setOpen] = useState(false);
-  const [styles, setStyles] = useState({});
-
-  return (
-    <>
-      <Space>
-        <Button 
-          type="primary" 
-          onClick={() => {
-            setStyles({
-              header: {
-                color: 'red', 
-                fontSize: '24px'
-              }
-            })
-            setOpen(true);
-          }}
-        >
-          header
-        </Button>
-        <Button 
-          type="primary" 
-          onClick={() => {
-            setStyles({
-              body: {
-                fontSize: '36px'
-              }
-            })
-            setOpen(true);
-          }}
-        >
-          body
-        </Button>
-        <Button 
-          type="primary" 
-          onClick={() => {
-            setStyles({
-              footer: {
-                backgroundColor: 'orange', 
-              }
-            })
-            setOpen(true);
-          }}
-        >
-          footer
-        </Button>
-        <Button 
-          type="primary" 
-          onClick={() => {
-            setStyles({
-              mask: {
-                backgroundColor: 'rgba(247,220,111,0.667)'
-              }
-            })
-            setOpen(true);
-          }}  
-        >
-          mask
-        </Button>
-      </Space>
-      
-      <Modal
-        title='自定义Styles'
-        open={open}
-        onOk={() => setOpen(false)}
-        onCancel={() => setOpen(false)}
-        styles={styles}
-      >
-        <p>some contents...</p>
-        <p>some contents...</p>
-        <p>some contents...</p>
-      </Modal>
-    </>
-  );
-};
-```
-
-```jsx
-/**
- * title: 嵌套 Modal
- * description: 嵌套 Modal
- */
-import React, { useState } from 'react';
-import { Modal, Button } from 'happy-ui';
-
-export default () => {
-  const [open1, setOpen1] = useState(false);
-  const [open2, setOpen2] = useState(false);
-  const [open3, setOpen3] = useState(false);
-
-  const handleCallback = (cb, mes) => {
-    console.log(mes);
-    cb && cb(false);
-  };
-
-  return (
-    <>
-      <Button type='primary' onClick={() => setOpen1(true)}>Open Modal</Button>
-      <Modal
-        title='弹窗1'
-        open={open1}
-        onOk={() => handleCallback(setOpen1, 1)} 
-        onCancel={() => handleCallback(setOpen1, 1)}
-      >
-        <p>弹窗1...</p>
-        <p>弹窗1...</p>
-        <p>弹窗1...</p>
-        <Button onClick={() => setOpen2(true)}>嵌套弹窗2</Button>
-      </Modal>
-      <Modal
-        title='弹窗2'
-        open={open2}
-        onOk={() => handleCallback(setOpen2, 2)} 
-        onCancel={() => handleCallback(setOpen2, 2)}
-      >
-        <p>弹窗2...</p>
-        <p>弹窗2...</p>
-        <Button onClick={() => setOpen3(true)}>嵌套弹窗3</Button>
-      </Modal>
-      <Modal
-        title='弹窗3'
-        open={open3}
-        onOk={() => handleCallback(setOpen3, 3)} 
-        onCancel={() => handleCallback(setOpen3, 3)}
-      >
-        <p>弹窗3...</p>
-      </Modal>
-    </>
-  )
-}
-```
+<code src='./demos/demo10.tsx'></code>
 
 ## API
 | 属性 | 类型               | 默认值   | 必填 | 说明 |

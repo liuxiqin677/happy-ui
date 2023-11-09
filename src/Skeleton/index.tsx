@@ -1,28 +1,12 @@
 import cs from 'classnames';
 import { isNumber } from 'happy-ui/utils';
-import React, { FC, ReactNode, useCallback, useMemo } from 'react';
-import AvatarComponent, {
-  ISkeletonAvatarProps,
-  defaultAvatar,
-} from './components/Avatar/index';
+import React, { FC, useCallback, useMemo } from 'react';
+import AvatarComponent, { defaultAvatar } from './components/Avatar/index';
 import ButtonCompoent from './components/Button';
 import ImageComponent from './components/Image';
 import InputComponent from './components/Input';
 import './index.less';
-
-export interface ISkeletonTitleProps {
-  width?: number | string;
-}
-
-export interface ISkeletonProps {
-  active?: boolean;
-  loading?: boolean;
-  title?: boolean | ISkeletonTitleProps;
-  avatar?: boolean | ISkeletonAvatarProps;
-  rows?: number; //展示几行 paragraph，默认 3 行
-  width?: Array<number | string>; //每行 paragraph 的长度，数字是 `${value}px`，字符串需要指定单位；没传的 row 默认 100%
-  children?: ReactNode;
-}
+import { ISkeletonProps } from './interface';
 
 const InternalSkeleton: FC<ISkeletonProps> = ({
   active = false,

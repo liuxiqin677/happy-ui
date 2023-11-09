@@ -1,18 +1,8 @@
 import cs from 'classnames';
 import { isNumber } from 'happy-ui/utils';
-import React, { CSSProperties, FC, ReactNode, useMemo } from 'react';
+import React, { FC, useMemo } from 'react';
+import { IDividerProps } from './interface';
 import './index.less';
-
-export interface IDividerProps {
-  type?: 'horizontal' | 'vertical';
-  dashed?: boolean;
-  orientation?: 'left' | 'right' | 'center';
-  orientationMargin?: number | string;
-  plain?: boolean;
-  className?: string;
-  children?: ReactNode;
-  style?: CSSProperties;
-}
 
 const Divider: FC<IDividerProps> = ({
   type = 'horizontal',

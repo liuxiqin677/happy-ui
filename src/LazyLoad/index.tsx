@@ -1,25 +1,5 @@
-/*
- * @Author: liuxiqin
- * @Date: 2023-10-19 14:01:49
- * @LastEditTime: 2023-10-19 14:10:46
- * @LastEditors: liuxiqin
- * @Description:
- */
-import React, {
-  CSSProperties,
-  FC,
-  ReactNode,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
-
-export interface ILazyLoadProps {
-  children?: ReactNode;
-  className?: string;
-  style?: CSSProperties;
-  delay?: number;
-}
+import React, { FC, useEffect, useRef, useState } from 'react';
+import { ILazyLoadProps } from './interface';
 
 const LazyLoad: FC<ILazyLoadProps> = ({
   children,
