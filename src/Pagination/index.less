@@ -1,0 +1,94 @@
+.happy-pagination {
+  display: flex;
+  align-items: center;
+
+  &-prev,
+  &-next,
+  &-numberBox,
+  &-pageSizeSelect {
+    min-width: 30px;
+    height: 30px;
+    margin: 0 5px;
+    font-size: 14px;
+    line-height: 30px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  &-numberBox:hover {
+    color: #1677ff;
+    border: 1px solid #1677ff;
+    cursor: pointer;
+  }
+
+  &-disabled {
+    color: #c0c4cc;
+    cursor: not-allowed;
+  }
+
+  &-actived {
+    color: #1677ff;
+    border-color: #1677ff;
+  }
+
+  &-pageSizeSelect {
+    min-width: 80px;
+    margin-left: 10px;
+
+    .size {
+      margin-right: 5px;
+    }
+
+    .options {
+      position: relative;
+      top: 5px;
+      display: flex;
+      flex-direction: column;
+      width: 80px;
+      box-shadow: 0 0 20px rgb(218, 218, 218);
+      transition: 0.2s linear;
+
+      .option {
+        font-size: 14px;
+        line-height: 2em;
+        text-align: center;
+
+        &:hover {
+          color: #1677ff;
+        }
+      }
+    }
+
+    &:hover {
+      border: 1px solid #1677ff;
+    }
+  }
+
+  &-jumpBox {
+    margin-left: 10px;
+
+    &-jump {
+      width: 40px;
+      height: 25px;
+      margin: 0 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      outline-color: #1677ff;
+      transition: 0.2s linear;
+
+      &:hover {
+        border-color: #1677ff;
+      }
+
+      &:focus {
+        border-color: #1677ff;
+        box-shadow: 0 0 0 2px rgba(5, 145, 255, 0.1);
+        outline: 0;
+      }
+    }
+  }
+}
