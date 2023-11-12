@@ -1,10 +1,3 @@
-/*
- * @Author: liuxiqin
- * @Date: 2023-10-24 10:14:16
- * @LastEditTime: 2023-10-25 17:34:28
- * @LastEditors: liuxiqin
- * @Description:
- */
 import { defineConfig } from 'dumi';
 
 export default defineConfig({
@@ -31,6 +24,7 @@ export default defineConfig({
     }
     .dumi-default-sidebar {
       width: 300px !important;
+      max-height: none !important;
     }
     .dumi-default-header-left {
       width: 300px !important;

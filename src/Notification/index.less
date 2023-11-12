@@ -1,0 +1,58 @@
+.happy-notification-container {
+  position: fixed;
+  z-index: 9999;
+}
+.happy-notification-container.happy-notification-container-topRight {
+  top: 24px;
+  right: 24px;
+}
+.happy-notification-container.happy-notification-container-topLeft {
+  top: 24px;
+  left: 24px;
+}
+.happy-notification-container.happy-notification-container-bottomLeft {
+  bottom: 24px;
+  left: 24px;
+}
+.happy-notification-container.happy-notification-container-bottomRight {
+  bottom: 24px;
+  right: 24px;
+}
+.happy-notification {
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.88);
+  background-color: rgba(255, 255, 255, 1);
+  width: 384px;
+  max-width: calc(100vw - 48px);
+  font-size: 14px;
+  border-radius: 8px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  padding: 24px;
+  box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08),
+    0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+
+  .happy-notification-wrapper {
+    display: flex;
+    .happy-notification-info-icon {
+        svg {
+            font-size: 24px;
+        }
+    }
+    .happy-notification-content {
+      flex: 1;
+      margin-left: 12px;
+      .happy-notification-content-header {
+        font-size: 16px;
+        margin-bottom: 8px;
+      }
+    }
+    .happy-notification-close-icon {
+        cursor: pointer;
+    }
+  }
+  .happy-notification-footer {
+    margin-top: 24px;
+  }
+}
