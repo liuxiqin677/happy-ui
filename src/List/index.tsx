@@ -23,6 +23,7 @@ const InternalList: FC<IListProps> = ({
   size = 'default',
   loadMore = false,
   isVirtualList = false,
+  virtualShowNum = 5,
   lazyScrollAtBottom,
 }) => {
   // 处理后的数据源
@@ -36,7 +37,7 @@ const InternalList: FC<IListProps> = ({
         ?.clientHeight as number;
       listItemHeight.current = rowHeight;
       setDealDataSource((prev: Array<any>) => {
-        prev = dataSource.slice(0, 5);
+        prev = dataSource.slice(0, virtualShowNum);
         return [...prev];
       });
     } else {
@@ -84,7 +85,7 @@ const InternalList: FC<IListProps> = ({
     );
     setScrollTop((victurlListContentRef.current as HTMLDivElement).scrollTop);
     setDealDataSource((prev: Array<any>) => {
-      prev = dataSource.slice(startIndex, startIndex + 5);
+      prev = dataSource.slice(startIndex, startIndex + virtualShowNum);
       return [...prev];
     });
   };
@@ -101,7 +102,9 @@ const InternalList: FC<IListProps> = ({
           <div
             className="victurl-list-content"
             style={{
-              height: `${(5 * listItemHeight.current) as number}px`,
+              height: `${
+                (virtualShowNum * listItemHeight.current) as number
+              }px`,
             }}
             ref={victurlListContentRef}
             onScroll={victurlScroll}

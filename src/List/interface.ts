@@ -12,6 +12,7 @@ interface IListProps {
   size?: TListSize;
   loadMore?: boolean;
   isVirtualList?: boolean; //是否开启虚拟列表
+  virtualShowNum?: number; //默认展示多少行
   lazyScrollAtBottom?: (bottomDistance: number, loadMore: boolean) => any; //懒加载滚动到底部监听
 }
 
