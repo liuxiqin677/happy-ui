@@ -8,6 +8,7 @@ export { default as Form } from './Form';
 export { default as Input } from './Input';
 export { default as Layout } from './Layout';
 export { default as LazyLoad } from './LazyLoad';
+export { default as List } from './List';
 export { default as Message } from './Message';
 export { default as Modal } from './Modal';
 export { default as Notification } from './Notification';
