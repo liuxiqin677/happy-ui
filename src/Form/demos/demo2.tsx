@@ -1,17 +1,20 @@
 import { Button, Form, Input } from 'happy-ui';
 import React, { useRef } from 'react';
+import { IFormRef } from '../interface';
 
 export default () => {
-  const form = Form.useForm(); // 拿到 form实例对象
-  const formRef = useRef(); // 调用端设一个ref，保证单页面多表单唯一性
+  const formRef = useRef<IFormRef>(null);
 
   const submit = async () => {
-    const submitParams = await form.onSubmit(formRef);
+    const submitParams = await formRef.current?.submit();
     console.log(submitParams);
   };
 
   return (
-    <Form formField={formRef} style={{ width: '600px' }}>
+    <Form
+      ref={formRef}
+      style={{ width: '600px' }}
+    >
       <Form.Item label="Username" field="username">
         <Input placeholder="Please enter your usename" width={300} />
       </Form.Item>

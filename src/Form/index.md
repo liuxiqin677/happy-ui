@@ -19,9 +19,9 @@ toc: content
 <code src="./demos/demo1.tsx"></code>
 
 ## 受控表单
-- 首先通过 `useRef` 创建 ref 赋值给 `formField` 并传递给 Form
+- 首先通过 `useRef` 创建 ref
 - 再配置 Form.Item 的 `field` 字段，让表单项成为受控组件。`filed` 字段不能重复
-- 最后，通过 `Form.useForm()` 使用表单内部的方法，获取表单值以及自动校验；你也可以手动出发 `validateFileds` 对表单进行校验
+- 最后，通过 `ref.current.sumbit()` 获取表单值以及自动校验；你也可以手动出发 `validateFileds` 对表单进行校验
 
 <code src="./demos/demo2.tsx"></code>
 
@@ -44,8 +44,3 @@ toc: content
 注册表单案例
 
 <code src="./demos/demo6.tsx"></code>
-
-## 获取表单上下文
-`Form.useForm()` 获取表单受控参数
-
-<code src="./demos/demo7.tsx"></code>

@@ -1,12 +1,12 @@
 import { Button, Form, Input, Message, Space } from 'happy-ui';
-import React, { createRef } from 'react';
+import React, { useRef } from 'react';
+import { IFormRef } from '../interface';
 
 export default function index1() {
-  const form = Form.useForm(); // 使用Form组件回传的hooks，调用组件内链方法
-  const formRef = createRef(); // 调用端设一个ref，保证单页面多表单唯一性
+  const formRef = useRef<IFormRef>(null); // 调用端设一个ref，保证单页面多表单唯一性
 
   const submit = async () => {
-    const submitParams = await form.onSubmit(formRef);
+    const submitParams = await formRef.current?.submit();
     if (submitParams.submitResult) {
       Message.success({
         content: '注册成功',
@@ -18,9 +18,13 @@ export default function index1() {
     }
   };
 
+  const reset = () => {
+    formRef.current?.resetFields()
+  }
+
   return (
     <div>
-      <Form layout="horizontal" formField={formRef} style={{ width: '600px' }}>
+      <Form layout="horizontal" ref={formRef} style={{ width: '600px' }}>
         <Form.Item
           label="Username"
           field="username"
@@ -42,7 +46,7 @@ export default function index1() {
               Submit
             </Button>
             <Button
-              onClick={async () => await form.resetFields(formRef)}
+              onClick={() => reset()}
               style={{ margin: '0 10px' }}
             >
               Reset
