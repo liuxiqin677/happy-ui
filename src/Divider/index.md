@@ -14,6 +14,7 @@ toc: content
 区隔内容的分割线。
 
 ## 何时使用
+
 - 对不同章节的文本段落进行分割。
 - 对行内文字/链接进行分割，例如表格的操作列。
 
@@ -44,12 +45,13 @@ toc: content
 <code src="./demos/demo4.tsx"></code>
 
 ## API
-| 属性 |  类型   | 默认值   | 必填 | 说明 
-| ---- | ------------------| -------- | ---- | ---- |
-| className | string | - |  false  | 分割线样式类		
-| style | CSSProperties | - |  false  | 分割线样式对象		
-| type | `horizontal`、`vertical` | `horizontal` |  false  | 水平还是垂直类型	
-| dashed | boolean | false |  false  | 是否虚线
-| orientation | `left`、`right`、`center` | `center` |  false  | 分割线标题的位置
-| orientationMargin | string、number | false |  false  | 标题和最近 left/right 边框之间的距离，<br/> 去除了分割线，同时 `orientation` 必须为 left 或 right。<br/>如果传入 string 类型的数字且不带单位，默认单位是 px
-| plain | boolean | false |  false  | 是否虚线
+
+| 属性              | 类型                      | 默认值       | 必填  | 说明                                                                                                                                                        |
+| ----------------- | ------------------------- | ------------ | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| className         | string                    | -            | false | 分割线样式类                                                                                                                                                |
+| style             | CSSProperties             | -            | false | 分割线样式对象                                                                                                                                              |
+| type              | `horizontal`、`vertical`  | `horizontal` | false | 水平还是垂直类型                                                                                                                                            |
+| dashed            | boolean                   | false        | false | 是否虚线                                                                                                                                                    |
+| orientation       | `left`、`right`、`center` | `center`     | false | 分割线标题的位置                                                                                                                                            |
+| orientationMargin | string、number            | false        | false | 标题和最近 left/right 边框之间的距离，<br/> 去除了分割线，同时 `orientation` 必须为 left 或 right。<br/>如果传入 string 类型的数字且不带单位，默认单位是 px |
+| plain             | boolean                   | false        | false | 是否虚线                                                                                                                                                    |

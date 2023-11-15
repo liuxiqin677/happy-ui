@@ -1,5 +1,5 @@
 ---
-title: Button 按钮 
+title: Button 按钮
 nav:
   path: /components
 group:
@@ -61,21 +61,21 @@ toc: content
 
 <code src="./demos/demo8.tsx"></code>
 
-
 ## API
-| 属性 | 类型               | 默认值   | 必填 | 说明 |
-| ---- | ------------------| -------- | ---- | ---- |
-| type | 'primary'、'default'、'dashed'、'text'、'link' | 'default' |  false  | 按钮类型 
-| className | string | - |  false  | 传入的类名
-| style | CSSProperties | - |  false  | 传入的内联样式
-| onClick | (event: MouseEvent) => void; | - |  false  | 点击按钮时的回调
-| size | 'small'、'default'、'large' | 'default' |  false  | 按钮大小
-| disabled | boolean | false |  false  | 按钮是否禁用
-| loading | boolean | false |  false  | 按钮是否处于加载中状态
-| icon | ReactNode | - |  false  | 按钮图标
-| danger | boolean | false |  false  | 设置危险按钮	
-| ghost | boolean | false |  false  | 幽灵属性，使按钮背景透明	
 
+| 属性      | 类型                                           | 默认值    | 必填  | 说明                     |
+| --------- | ---------------------------------------------- | --------- | ----- | ------------------------ |
+| type      | 'primary'、'default'、'dashed'、'text'、'link' | 'default' | false | 按钮类型                 |
+| className | string                                         | -         | false | 传入的类名               |
+| style     | CSSProperties                                  | -         | false | 传入的内联样式           |
+| onClick   | (event: MouseEvent) => void;                   | -         | false | 点击按钮时的回调         |
+| size      | 'small'、'default'、'large'                    | 'default' | false | 按钮大小                 |
+| disabled  | boolean                                        | false     | false | 按钮是否禁用             |
+| loading   | boolean                                        | false     | false | 按钮是否处于加载中状态   |
+| icon      | ReactNode                                      | -         | false | 按钮图标                 |
+| danger    | boolean                                        | false     | false | 设置危险按钮             |
+| ghost     | boolean                                        | false     | false | 幽灵属性，使按钮背景透明 |
 
 ## 思路
+
 Button 组件的思路很简单, 最主要的就是根据不同的状态设置不同的样式即可
