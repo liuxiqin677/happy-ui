@@ -10,9 +10,11 @@ toc: content
 ---
 
 # Notification 通知提醒框
+
 全局展示通知提醒信息。
 
 ## 何时使用
+
 在系统四个角显示通知提醒信息。经常用于以下情况：
 
 - 较为复杂的通知内容。
@@ -25,13 +27,13 @@ toc: content
 
 <code src='./demos/demo1.tsx'></code>
 
-## 四种类型1
+## 四种类型 1
 
 通过 `type` 指定 notification 的类型
 
 <code src='./demos/demo2.tsx'></code>
 
-## 四种类型2
+## 四种类型 2
 
 你也可以通过对应的 API 方法来渲染四种类型的 notification
 
@@ -61,7 +63,6 @@ toc: content
 
 <code src='./demos/demo6.tsx'></code>
 
-
 ## 自定义图标
 
 设置 `icon` 自定义图标
@@ -69,6 +70,7 @@ toc: content
 <code src='./demos/demo7.tsx'></code>
 
 ## API
+
 - `Notification.open(config)`
 - `Notification.error(config)`
 - `Notification.warn(config)`
@@ -76,16 +78,16 @@ toc: content
 - `Notification.destory(key: string)`
 
 config 参数如下：
-| 属性 | 类型               | 默认值   | 必填 | 说明 |
+| 属性 | 类型 | 默认值 | 必填 | 说明 |
 | ---- | ------------------| -------- | ---- | ---- |
-| className | string | - |  false  | 自定义 className
+| className | string | - | false | 自定义 className
 | style | CSSProperties | - | false | 自定义 style
 | type | info、warning、success、error | info | false | 类型
 | closeIcon | ReactNode | - | false | 自定义关闭图标
 | description | ReactNode | - | true | 通知框内容，`必传`
 | duration | number | 4.5 | false | 延迟关闭时间，为 `0` 时不关闭，默认是 `4.5s`
 | icon | ReactNode | - | false | 自定义左上角图标
-| key | string | - | true | 通知框唯一key，`必传`
+| key | string | - | true | 通知框唯一 key，`必传`
 | message | ReactNode | - | true | 通知框内容标题，`必传`
 | placement | topLeft、topRight、bottomLeft、bottomRight | topRight | false | 通知框内位置
 | footer | ReactNode | - | false | 自定义底部

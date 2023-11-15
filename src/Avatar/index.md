@@ -10,6 +10,7 @@ toc: content
 ---
 
 # Avatar 头像
+
 用作头像显示，可以为图片、图标或字符形式展示。
 
 ## 基本使用
@@ -44,20 +45,21 @@ toc: content
 
 ## API
 
-| 属性 | 类型               | 默认值   | 必填 | 说明 |
-| ---- | ------------------| -------- | ---- | ---- |
-| className | string | - |  false  | 自定义类名
-| style | CSSProperties | - |  false  | 自定义stylee
-| size | number | 40 |  false  | 头像大小 
-| shape | 'circle'、'square' | 'circle' |  false  | 头像形状 
-| autoFixFontSize | boolean | true |  false  | 文本自适应 
-| triggerType | 'mask'、'button' | 40 |  false  | 头像交互方式 
-| triggerIcon | ReactNode | - |  false  | 自定义头像交互按钮 
-| triggerClick | Function | - |  false  | 头像点击回调 
+| 属性            | 类型               | 默认值   | 必填  | 说明               |
+| --------------- | ------------------ | -------- | ----- | ------------------ |
+| className       | string             | -        | false | 自定义类名         |
+| style           | CSSProperties      | -        | false | 自定义 stylee      |
+| size            | number             | 40       | false | 头像大小           |
+| shape           | 'circle'、'square' | 'circle' | false | 头像形状           |
+| autoFixFontSize | boolean            | true     | false | 文本自适应         |
+| triggerType     | 'mask'、'button'   | 40       | false | 头像交互方式       |
+| triggerIcon     | ReactNode          | -        | false | 自定义头像交互按钮 |
+| triggerClick    | Function           | -        | false | 头像点击回调       |
 
 ## Avatar Group API
-| 属性 | 类型               | 默认值   | 必填 | 说明 |
-| ---- | ------------------| -------- | ---- | ---- |
-| className | string | - |  false  | 自定头像组义类名
-| groupStyle | CSSProperties | - |  false  | 自定义头像组stylee
-| size | number | 40 |  false  | 每一个头像的大小 
+
+| 属性       | 类型          | 默认值 | 必填  | 说明                |
+| ---------- | ------------- | ------ | ----- | ------------------- |
+| className  | string        | -      | false | 自定头像组义类名    |
+| groupStyle | CSSProperties | -      | false | 自定义头像组 stylee |
+| size       | number        | 40     | false | 每一个头像的大小    |
