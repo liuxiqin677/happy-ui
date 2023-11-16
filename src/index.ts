@@ -1,6 +1,7 @@
 export { default as Alert } from './Alert';
 export { default as Avatar } from './Avatar';
 export { default as Button } from './Button';
+export { default as CheckBox } from './CheckBox';
 export { default as DatePicker } from './DatePicker';
 export { default as Divider } from './Divider';
 export { default as Flex } from './Flex';
