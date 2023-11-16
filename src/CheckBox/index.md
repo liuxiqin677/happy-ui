@@ -48,11 +48,11 @@ toc: content
 
 <code src='./demos/demo5.tsx'></code>
 
-<!-- ## 全选
+## 全选
 
 全选 CheckBox 的每一项
 
-<code src='./demos/demo6.tsx'></code> -->
+<code src='./demos/demo6.tsx'></code>
 
 ## API
 

@@ -1,5 +1,5 @@
 import cs from 'classnames';
-import React, { FC, useMemo, useState } from 'react';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 import CheckBoxGroup from './CheckBoxGroup';
 import './index.less';
 import { ICheckBoxProps } from './interface';
@@ -12,7 +12,7 @@ const InternalCheckBox: FC<ICheckBoxProps> = ({
   onChange,
   children,
 }) => {
-  const [checkStatus, setCheckStatus] = useState<boolean>(checked);
+  const [checkStatus, setCheckStatus] = useState<boolean>();
   const checkBoxWrapperClass = useMemo(() => {
     return cs({
       'happy-checkbox': true,
@@ -33,6 +33,10 @@ const InternalCheckBox: FC<ICheckBoxProps> = ({
     setCheckStatus(!checkStatus);
     onChange?.(!checkStatus);
   };
+
+  useEffect(() => {
+    setCheckStatus(checked);
+  }, [checked]);
 
   return (
     <div
@@ -61,6 +65,6 @@ type CompoundedComponent = React.ForwardRefExoticComponent<ICheckBoxProps> & {
 };
 
 const CheckBox = InternalCheckBox as CompoundedComponent;
-CheckBox.Group = CheckBoxGroup
+CheckBox.Group = CheckBoxGroup;
 
 export default CheckBox;

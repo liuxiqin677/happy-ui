@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo, useState } from 'react';
+import React, { FC, useEffect, useMemo, useRef, useState } from 'react';
 import CheckBox from './index';
 import './index.less';
 import { ICheckBoxGroupProps, Option } from './interface';
@@ -7,11 +7,13 @@ const CheckBoxGroup: FC<ICheckBoxGroupProps> = ({
   defaultValue,
   disabled = false,
   options,
+  indeterminate = false,
   onChange,
 }) => {
   const [checkedValues, setCheckedValues] = useState<Array<number | string>>(
     defaultValue ? [...defaultValue] : [],
   );
+  const initDefault = useRef<boolean>(false);
 
   const getItemValue = (item: string | number | Option) => {
     return typeof item === 'string' || typeof item === 'number'
@@ -34,7 +36,9 @@ const CheckBoxGroup: FC<ICheckBoxGroupProps> = ({
       setCheckedValues([...checkedValues, currentValue]);
       onChange?.([...checkedValues, currentValue]);
     } else {
-      const res = checkedValues.filter((item: string | number | Option) => getItemValue(item) !== currentValue)
+      const res = checkedValues.filter(
+        (item: string | number | Option) => getItemValue(item) !== currentValue,
+      );
       setCheckedValues([...res]);
       onChange?.([...res]);
     }
@@ -56,6 +60,31 @@ const CheckBoxGroup: FC<ICheckBoxGroupProps> = ({
         ))
       : null;
   }, [options, checkedValues]);
+
+  useEffect(() => {
+    if (indeterminate) {
+      const res = options.reduce(
+        (prev: Array<string | number>, cur: string | number | Option) => {
+          return [...prev, getItemValue(cur)];
+        },
+        [],
+      );
+      setCheckedValues(res);
+      onChange?.(res);
+    } else if (
+      !indeterminate &&
+      !initDefault.current &&
+      defaultValue &&
+      defaultValue.length
+    ) {
+      setCheckedValues([...defaultValue]);
+      onChange?.([...defaultValue]);
+      initDefault.current = true;
+    } else {
+      setCheckedValues([]);
+      onChange?.([]);
+    }
+  }, [indeterminate, defaultValue]);
 
   return <div className="happy-checkbox-group">{renderOptions}</div>;
 };
