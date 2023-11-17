@@ -1,10 +1,3 @@
-/*
- * @Author: liuxiqin
- * @Date: 2023-10-18 13:52:58
- * @LastEditTime: 2023-10-18 13:53:06
- * @LastEditors: liuxiqin
- * @Description: 
- */
 import { useEffect, useState } from 'react';
 
 interface cssClass {
@@ -29,6 +22,11 @@ export const useCssClassManager = (cssClassMap: cssClass) => {
     });
   };
 
+  // 是否有指定类名
+  const hasClassName = (className: string) => {
+    return Object.keys(classMap).find((c: string) => c === className);
+  };
+
   // 添加指定类名
   const addClassName = (classKey: string) => {
     setClassMap((prev) => ({ ...prev, [classKey]: cssClassMap[classKey] }));
@@ -41,6 +39,7 @@ export const useCssClassManager = (cssClassMap: cssClass) => {
   return {
     removeClassName,
     addClassName,
+    hasClassName,
     classList,
   };
 };

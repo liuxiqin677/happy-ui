@@ -14,6 +14,7 @@ export { default as Message } from './Message';
 export { default as Modal } from './Modal';
 export { default as Notification } from './Notification';
 export { default as Pagination } from './Pagination';
+export { default as Popover } from './Popover';
 export { default as Radio } from './Radio';
 export { default as Skeleton } from './Skeleton';
 export { default as Space } from './Space';

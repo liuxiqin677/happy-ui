@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
+import { useCssClassManager } from '../../common/hook';
 import ErrorIcon from '../../components/ErrorIcon';
 import InfoIcon from '../../components/InfoIcon';
 import SuccessIcon from '../../components/SuccessIcon';
 import WarningIcon from '../../components/WarningIcon';
 import { uuid } from '../utils';
-import { useCssClassManager } from './hooks';
 import './index.less';
 import {
   BaseMessageOptions,
