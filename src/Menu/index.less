@@ -1,0 +1,136 @@
+@hoverColor: rgba(205,209,212, 0.2);
+@itemHeight: 50px;
+
+.happy-navMenu {
+  background-color: white;
+  min-width: 180px;
+  font-size: 14px;
+  padding: 0;
+  overflow: hidden;
+
+  .happy-subNavMenu {
+    padding: 0;
+    box-shadow: none;
+  }
+
+  & > .happy-navMenuItem {
+    padding-left: 20px;
+  }
+}
+
+.happy-navMenuItem {
+  height: @itemHeight;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  list-style: none;
+  line-height: @itemHeight;
+  color: rgb(68, 68, 68);
+
+  &::first-child {
+    border-top: none;
+  }
+
+  & > a,
+  span {
+    width: 100%;
+    height: 100%;
+    display: block;
+    color: currentColor;
+  }
+
+  a {
+    text-decoration: none;
+    line-height: @itemHeight;
+    color: currentColor;
+  }
+
+  &:hover {
+    background-color: @hoverColor;
+  }
+
+  &:first-child {
+    border-top: none;
+  }
+
+  &__icon,
+  &__label {
+    display: inline-block;
+  }
+
+  &__icon {
+    margin-right: 8px;
+  }
+
+  &__label {
+    text-decoration: none;
+    line-height: @itemHeight;
+    margin-right: 15px;
+  }
+
+  .happy-icon-arrow {
+    position: relative;
+    right: 18px;
+  }
+
+  &__disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+
+    a {
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    &:hover {
+      transition: none;
+      background-color: #ededed;
+    }
+  }
+
+  &__active {
+    background-color: #e6f4ff;
+    color: #1677ff;
+  }
+}
+
+.happy-subNavMenu {
+  padding: 5px 20px;
+  margin: 0;
+  border: unset;
+  border-radius: 0;
+
+  .happy-navMenuItem {
+    &__label {
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    &:first-child {
+      padding-left: 20px;
+
+      &:hover {
+        background-color: @hoverColor;
+      }
+    }
+  }
+
+  &__title {
+    background-color: #ffffff;
+  }
+
+  &__items {
+    background-color: rgba(205,209,212, 0.06);
+    transition: width, height 0.2s ease-in-out;
+    overflow: hidden;
+
+    // .happy-subNavMenu__title {
+    //   background-color: #e6f4ff;
+    //   color: #1677ff;
+    // }
+
+    .happy-navMenuItem:hover {
+      background-color: @hoverColor;
+    }
+  }
+}

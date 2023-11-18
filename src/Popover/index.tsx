@@ -8,7 +8,7 @@ import {
 } from 'react';
 import { createPortal } from 'react-dom';
 import { useCssClassManager } from '../../common/hook';
-import { uuid } from '../utils';
+import { uuid } from '../../common/utils';
 import { usePopoverPosition } from './hooks';
 import './index.less';
 import { IPopoverProps } from './interface';
@@ -69,7 +69,7 @@ const Popover: FC<IPopoverProps> = ({
         ref={popoverRef}
         className={`happy-popover ${classList} ${className}`}
         style={{
-            ...style
+          ...style,
         }}
         tabIndex={0}
         onBlur={closePopover}
