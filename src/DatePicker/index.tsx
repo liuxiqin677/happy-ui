@@ -1,6 +1,9 @@
 import cs from 'classnames';
-import Button from 'happy-ui/Button';
-import React, { FC, useCallback, useMemo, useState } from 'react';
+import React, { FC, useCallback, useMemo, useRef, useState } from 'react';
+import Button from '../Button/index';
+import Input from '../Input/index';
+import Popover from '../Popover/index';
+import { IPopoverRef } from '../Popover/interface';
 import './index.less';
 import { IDatePickerProps } from './interface';
 
@@ -13,6 +16,8 @@ const DatePicker: FC<IDatePickerProps> = ({
   startWeekDay = 'Sun',
   onChange,
 }) => {
+  const inputRef = useRef<any>(null);
+  const popoverRef = useRef<IPopoverRef>(null);
   const monthNames: string[] = [
     '一月',
     '二月',
@@ -138,6 +143,14 @@ const DatePicker: FC<IDatePickerProps> = ({
           className="happy-datepicker-item-day"
           onClick={() => {
             setDate(new Date(date.getFullYear(), date.getMonth(), i));
+            inputRef.current.setCurrentValue(
+              new Date(
+                date.getFullYear(),
+                date.getMonth(),
+                i,
+              ).toLocaleDateString(),
+            );
+            popoverRef.current?.setVisible(false);
             onChange?.(new Date(date.getFullYear(), date.getMonth(), i));
           }}
         >
@@ -163,26 +176,41 @@ const DatePicker: FC<IDatePickerProps> = ({
   }, []);
 
   return (
-    <div
-      className={datePickerClass}
+    <Popover
+      ref={popoverRef}
       style={{
-        width: `${typeof width === 'number' ? `${width}px` : width}`,
-        height: `${typeof height === 'number' ? `${height}px` : height}`,
-        ...style,
+        padding: 0,
       }}
-    >
-      <div className="happy-datepicker-header">
-        <Button onClick={handlePrevMonth}>&lt;</Button>
-        <div>
-          {date.getFullYear()}年{monthNames[date.getMonth()]}
+      trigger="click"
+      placement="bottom"
+      content={
+        <div
+          className={datePickerClass}
+          style={{
+            width: `${typeof width === 'number' ? `${width}px` : width}`,
+            height: `${typeof height === 'number' ? `${height}px` : height}`,
+            ...style,
+          }}
+        >
+          <div className="happy-datepicker-header">
+            <Button onClick={handlePrevMonth}>&lt;</Button>
+            <div>
+              {date.getFullYear()}年{monthNames[date.getMonth()]}
+            </div>
+            <Button onClick={handleNextMonth}>&gt;</Button>
+          </div>
+          <div className="happy-datepicker-days">
+            {renderDisplayWeekDays()}
+            {renderDates()}
+          </div>
         </div>
-        <Button onClick={handleNextMonth}>&gt;</Button>
-      </div>
-      <div className="happy-datepicker-days">
-        {renderDisplayWeekDays()}
-        {renderDates()}
-      </div>
-    </div>
+      }
+    >
+      <Input
+        ref={inputRef}
+        onClick={() => popoverRef.current?.setVisible(true)}
+      />
+    </Popover>
   );
 };
 

@@ -142,14 +142,12 @@ function usePopoverPosition(
       let sourceW = 0,
         sourceH = 0;
       if (popover.current) {
-        console.log(popover.current.getBoundingClientRect())
         const { width, height } = popover.current.getBoundingClientRect();
         [sourceW, sourceH] = [width, height];
       }
 
       let left = 0,
         top = 0;
-        console.log(targetX, targetY, targetW, targetH, sourceW, sourceH);
       // 计算 popover 的位置
       if (position === 'left') {
         left = targetX - sourceW - 12;

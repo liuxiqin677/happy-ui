@@ -16,4 +16,8 @@ interface IPopoverProps {
   children?: ReactElement;
 }
 
-export { IPopoverProps, TPlacement, TTriggerWay };
+interface IPopoverRef {
+  setVisible: (visible: boolean) => void;
+}
+
+export { IPopoverProps, IPopoverRef, TPlacement, TTriggerWay };
