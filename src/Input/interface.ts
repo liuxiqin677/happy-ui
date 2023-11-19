@@ -20,7 +20,7 @@ interface InputProps
   showCount?: boolean;
   onChange?: (value: string) => void;
   onFocus?: (value: string | number) => void;
-  onClick?: () =>  void;
+  onClick?: () => void;
   onBlur?: () => void;
   onKeyDown?: Function;
   onNumberChange?: Function;
@@ -30,4 +30,8 @@ interface InputProps
   isFather?: boolean;
 }
 
-export type { InputProps };
+interface IInputRef {
+  setCurrentValue: (value: string) => void;
+}
+
+export type { IInputRef, InputProps };

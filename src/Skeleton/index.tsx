@@ -1,5 +1,5 @@
 import cs from 'classnames';
-import { isNumber } from 'happy-ui/utils';
+import { isNumber } from '../../common/utils';
 import React, { FC, useCallback, useMemo } from 'react';
 import AvatarComponent, { defaultAvatar } from './components/Avatar/index';
 import ButtonCompoent from './components/Button';

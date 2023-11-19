@@ -1,5 +1,5 @@
 import cs from 'classnames';
-import { isNumber } from 'happy-ui/utils';
+import { isNumber } from '../../common/utils';
 import React, { FC, useMemo } from 'react';
 import { IDividerProps } from './interface';
 import './index.less';
