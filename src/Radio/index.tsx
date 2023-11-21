@@ -2,8 +2,8 @@ import cs from 'classnames';
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 import RadioButton from '../RadioButton/index';
 import RadioGroup, { GroupContext } from '../RadioGroup/index';
-import { IRadioProps } from './interface';
 import './index.less';
+import { IRadioProps } from './interface';
 
 const InternalRadio: React.FC<IRadioProps> = ({
   disabled = false,
@@ -11,6 +11,7 @@ const InternalRadio: React.FC<IRadioProps> = ({
   checked = false,
   defaultChecked = false,
   children,
+  className = '',
 }) => {
   const { groupValue, groupDisabled, name, onGroupChange } =
     useContext(GroupContext);
@@ -42,7 +43,7 @@ const InternalRadio: React.FC<IRadioProps> = ({
   }, [checked, groupValue, value]);
 
   return (
-    <label className={labelClass}>
+    <label className={`${labelClass} ${className}`}>
       <span className={spanClass}>
         <input
           name={name}

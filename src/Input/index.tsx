@@ -158,6 +158,9 @@ const Input = forwardRef<IInputRef, InputProps>(
         }}
       >
         <input
+          style={{
+            width:'100%'
+          }}
           ref={ref}
           disabled={disabled}
           className="input"

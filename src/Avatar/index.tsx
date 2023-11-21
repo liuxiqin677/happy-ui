@@ -6,7 +6,7 @@ import { IAvatarProps } from './interface';
 
 const InternalAvatar: FC<IAvatarProps> = ({
   children,
-  className,
+  className = '',
   style = {},
   size = 40,
   autoFixFontSize = true,
@@ -22,7 +22,6 @@ const InternalAvatar: FC<IAvatarProps> = ({
       'happy-avatar': true,
       'happy-avatar-circle': shape === 'circle',
       'happy-avatar-square': shape === 'square',
-      className,
     });
   }, [shape]);
 
@@ -52,7 +51,7 @@ const InternalAvatar: FC<IAvatarProps> = ({
 
   return (
     <div
-      className={classNames}
+      className={`${classNames} ${className}`}
       style={{
         ...{
           ...groupStyle,

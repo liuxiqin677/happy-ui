@@ -1,5 +1,4 @@
-import cs from 'classnames';
-import React, { FC, useCallback, useMemo, useRef, useState } from 'react';
+import React, { FC, useCallback, useRef, useState } from 'react';
 import Button from '../Button/index';
 import Input from '../Input/index';
 import Popover from '../Popover/index';
@@ -168,13 +167,6 @@ const DatePicker: FC<IDatePickerProps> = ({
     return days;
   }, [date, startWeekDay]);
 
-  const datePickerClass = useMemo(() => {
-    return cs({
-      'happy-datepicker': true,
-      className,
-    });
-  }, []);
-
   return (
     <Popover
       ref={popoverRef}
@@ -185,7 +177,7 @@ const DatePicker: FC<IDatePickerProps> = ({
       placement="bottom"
       content={
         <div
-          className={datePickerClass}
+          className={`happy-datepicker ${className}`}
           style={{
             width: `${typeof width === 'number' ? `${width}px` : width}`,
             height: `${typeof height === 'number' ? `${height}px` : height}`,
@@ -208,6 +200,7 @@ const DatePicker: FC<IDatePickerProps> = ({
     >
       <Input
         ref={inputRef}
+        width={120}
         onClick={() => popoverRef.current?.setVisible(true)}
       />
     </Popover>

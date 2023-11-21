@@ -5,7 +5,7 @@ import './index.less';
 import { ITagProps } from './interface';
 
 const Tag: FC<ITagProps> = ({
-  className,
+  className = '',
   style = {},
   closeable,
   color,
@@ -41,7 +41,6 @@ const Tag: FC<ITagProps> = ({
       'happy-tag-has-no-color': color && !presetColors.includes(color),
       'happy-tag-hide': !visible,
       'happy-tag-closeable': closeable,
-      className,
     });
   }, [color, bordered, visible]);
 
@@ -54,7 +53,7 @@ const Tag: FC<ITagProps> = ({
 
   return (
     <span
-      className={tagClass}
+      className={`${tagClass} ${className}`}
       style={{
         ...(color && !presetColors.includes(color)
           ? {

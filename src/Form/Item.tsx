@@ -30,7 +30,7 @@ export interface IFormItemProps {
 const FormItem = (props: IFormItemProps) => {
   const {
     children,
-    className,
+    className = '',
     style = {},
     label,
     wrapperCol = 0,

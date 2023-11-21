@@ -4,6 +4,7 @@ interface IRadioProps {
   checked?: boolean;
   defaultChecked?: boolean;
   children?: any;
+  className?: string;
 }
 
 export { IRadioProps };

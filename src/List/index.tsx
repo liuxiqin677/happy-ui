@@ -14,7 +14,7 @@ import { IListProps } from './interface';
 export const ctx = createContext<any>({});
 
 const InternalList: FC<IListProps> = ({
-  className,
+  className = '',
   style = {},
   dataSource,
   renderItem,

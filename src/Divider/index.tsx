@@ -10,7 +10,7 @@ const Divider: FC<IDividerProps> = ({
   orientation = 'center',
   orientationMargin,
   plain = false,
-  className,
+  className = '',
   style = {},
   children,
 }) => {
