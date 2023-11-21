@@ -13,6 +13,9 @@ export default defineConfig({
   favicons: ['/logo.svg'],
   styles: [
     `
+    .dumi-default-doc-layout {
+      padding: 0 2px !important;
+    }
     .dumi-default-doc-layout > main {
       max-width: unset !important;
     }
