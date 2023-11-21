@@ -1,11 +1,3 @@
-/**
-  封装了 useFlexGapSupport 的 hook，里面通过创建 div 检查 scrollHeight 的方式来确定是否支持 gap 样式(antd是这样做的)
-  通过 useContext 读取 ConfigContext 的值，作为 props 的解构默认值
-  通过 createContext 创建 spaceContext，并通过 Provider 设置其中的值, 并传递给子组件 Item(不确定 Item 在哪个层级)
-  通过 useMemo 缓存作为参数的对象，避免不必要的渲染
- 通过 classnames 包来根据 props 动态生成 className
-  通过 align 生成对应的 className 来设置内容的对齐方式, center flex-start flex-end baseline
- */
 import classNames from 'classnames';
 import * as React from 'react';
 import Item from './Item';

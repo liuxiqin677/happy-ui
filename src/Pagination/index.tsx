@@ -228,7 +228,6 @@ const Pagination: FC<IPaginationProps> = ({
     return cs({
       'happy-pagination': true,
       'happy-pagination-sl': size === 'small',
-      className,
     });
   }, [size]);
 
@@ -270,7 +269,7 @@ const Pagination: FC<IPaginationProps> = ({
   }, []);
 
   return (
-    <div className={paginationClass} style={style}>
+    <div className={`${paginationClass} ${className}`} style={style}>
       {/* 上一页箭头 */}
       <div
         className={

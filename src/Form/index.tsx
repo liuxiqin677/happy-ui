@@ -1,9 +1,7 @@
-import cs from 'classnames';
 import React, {
   createContext,
   useEffect,
   useImperativeHandle,
-  useMemo,
   useRef,
   useState,
 } from 'react';
@@ -14,7 +12,10 @@ import { IFormProps, IFormRef, ruleType } from './interface';
 export const ctx = createContext<any>({} as any);
 
 const InternalForm = React.forwardRef<IFormRef, IFormProps>(
-  ({ children, className, layout = 'horizontal', style, disabled }, ref) => {
+  (
+    { children, className = '', layout = 'horizontal', style, disabled },
+    ref,
+  ) => {
     const [fieldList, setFieldList] = useState<any>({});
     const [reset, setReset] = useState(false);
     const [submitStatus, setSubmitStatus] = useState(false);
@@ -146,13 +147,6 @@ const InternalForm = React.forwardRef<IFormRef, IFormProps>(
       });
     };
 
-    const formClass = useMemo(() => {
-      return cs({
-        'happy-form': true,
-        className,
-      });
-    }, []);
-
     useEffect(() => {
       const fieldL: any = {};
       React.Children.toArray(children).forEach((child: any) => {
@@ -174,7 +168,11 @@ const InternalForm = React.forwardRef<IFormRef, IFormProps>(
 
     return (
       <ctx.Provider value={providerList}>
-        <div className={formClass} style={style} ref={internalFormRef}>
+        <div
+          className={`happy-form ${className}`}
+          style={style}
+          ref={internalFormRef}
+        >
           {disabled && <div className="happy-form-disabled" />}
           {children}
         </div>

@@ -5,7 +5,7 @@ import './index.less';
 import { ICheckBoxProps } from './interface';
 
 const InternalCheckBox: FC<ICheckBoxProps> = ({
-  className,
+  className = '',
   style = {},
   checked = false,
   disabled = false,
@@ -13,13 +13,6 @@ const InternalCheckBox: FC<ICheckBoxProps> = ({
   children,
 }) => {
   const [checkStatus, setCheckStatus] = useState<boolean>();
-  const checkBoxWrapperClass = useMemo(() => {
-    return cs({
-      'happy-checkbox': true,
-      // 'happy-checkbox-disabled': disabled,
-      className,
-    });
-  }, []);
   const checkBoxStatusClass = useMemo(() => {
     return cs({
       'happy-checkbox-default': !checkStatus,
@@ -40,7 +33,7 @@ const InternalCheckBox: FC<ICheckBoxProps> = ({
 
   return (
     <div
-      className={checkBoxWrapperClass}
+      className={`happy-checkbox ${className}`}
       style={style}
       onClick={toggleCheckedStatus}
     >

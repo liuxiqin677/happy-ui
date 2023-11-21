@@ -17,7 +17,7 @@ import {
 // Notification基础组件
 const BaseNotification: FC<IBaseNotification> = ({
   style = {},
-  className,
+  className = '',
   closeIcon = <CloseIcon />,
   type = 'info',
   duration = 4.5,
@@ -39,7 +39,6 @@ const BaseNotification: FC<IBaseNotification> = ({
       'happy-notification-topRight': placement === 'topRight',
       'happy-notification-bottomLeft': placement === 'bottomLeft',
       'happy-notification-bottomRight': placement === 'bottomRight',
-      className,
     });
   }, [placement]);
 
@@ -83,7 +82,7 @@ const BaseNotification: FC<IBaseNotification> = ({
 
   return (
     <div
-      className={notificationClass}
+      className={`${notificationClass} ${className}`}
       style={style}
       onClick={() => handleClick()}
     >

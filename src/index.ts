@@ -17,6 +17,7 @@ export { default as Notification } from './Notification';
 export { default as Pagination } from './Pagination';
 export { default as Popover } from './Popover';
 export { default as Radio } from './Radio';
+export { default as Select } from './Select';
 export { default as Skeleton } from './Skeleton';
 export { default as Space } from './Space';
 export { default as Tag } from './Tag';
