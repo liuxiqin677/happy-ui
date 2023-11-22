@@ -1,3 +1,4 @@
+@import '../variables.less';
 .happy-modal-root {
   transition: all 0.5s ease-in-out;
   box-sizing: border-box;
@@ -18,7 +19,7 @@
   margin: 0 auto;
   padding: 0;
   color: rgba(0, 0, 0, 0.88);
-  font-size: 14px;
+  font-size: @happy-fontSize-default;
   line-height: 1.5714285714285714;
   list-style: none;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
@@ -66,7 +67,7 @@
       .happy-modal-close-x {
         box-sizing: border-box;
         display: flex;
-        font-size: 16px;
+        font-size: @happy-fontSize-middle;
         font-style: normal;
         line-height: 22px;
         justify-content: center;
@@ -110,7 +111,7 @@
     }
     .happy-modal-body {
       box-sizing: border-box;
-      font-size: 14px;
+      font-size: @happy-fontSize-default;
       line-height: 1.5714285714285714;
       word-wrap: break-word;
     }

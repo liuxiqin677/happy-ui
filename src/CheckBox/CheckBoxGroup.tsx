@@ -14,6 +14,7 @@ const CheckBoxGroup: FC<ICheckBoxGroupProps> = ({
     defaultValue ? [...defaultValue] : [],
   );
   const initDefault = useRef<boolean>(false);
+  const hasCheckAll = useRef<boolean>(false);
 
   const getItemValue = (item: string | number | Option) => {
     return typeof item === 'string' || typeof item === 'number'
@@ -69,6 +70,7 @@ const CheckBoxGroup: FC<ICheckBoxGroupProps> = ({
         },
         [],
       );
+      hasCheckAll.current = true;
       setCheckedValues(res);
       onChange?.(res);
     } else if (
@@ -80,6 +82,13 @@ const CheckBoxGroup: FC<ICheckBoxGroupProps> = ({
       setCheckedValues([...defaultValue]);
       onChange?.([...defaultValue]);
       initDefault.current = true;
+    } else if (
+      !indeterminate &&
+      !hasCheckAll.current &&
+      defaultValue &&
+      defaultValue.length
+    ) {
+      return
     } else {
       setCheckedValues([]);
       onChange?.([]);

@@ -1,3 +1,4 @@
+@import '../variables.less';
 #happy-message-container {
   box-sizing: border-box;
   position: fixed;
@@ -17,12 +18,12 @@
     pointer-events: all;
     .happy-message-content {
       box-sizing: border-box;
-      font-size: 14px;
+      font-size: @happy-fontSize-default;
       .happy-message-icon {
         margin-inline-end: 8px;
         position: relative;
         top: 2px;
-        font-size: 16px;
+        font-size: @happy-fontSize-middle;
       }
     }
   }

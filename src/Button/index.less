@@ -1,3 +1,4 @@
+@import '../variables.less';
 //所有类型按钮的统一样式
 .happy-btn {
   font-size: 14px;
@@ -16,13 +17,13 @@
 // 默认按钮
 .happy-btn-default {
   background-color: #ffffff;
-  border: 1px solid #d9d9d9;
+  border: @happy-disabled-border-style;
   color: rgba(0, 0, 0, 0.88);
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.02);
 }
 .happy-btn-default:hover {
-  color: #4096ff;
-  border-color: #4096ff;
+  color: @happy-primary-color;
+  border-color: @happy-primary-color;
 }
 
 
@@ -30,13 +31,13 @@
 //主要按钮
 .happy-btn-primary {
   color: #fff;
-  background-color: #1677ff;
+  background-color: @happy-primary-background-color;
   box-shadow: 0 2px 0 rgba(5, 145, 255, 0.1);
   border-color: transparent;
 }
 .happy-btn-primary:hover {
   color: #fff;
-  background-color: #4096ff;
+  background-color: @happy-primary-color;
 }
 
 
@@ -44,15 +45,15 @@
 //虚线按钮
 .happy-btn-dashed {
   background-color: #ffffff;
-  border-color: #d9d9d9;
+  border-color: @happy-disabled-border-color;
   color: rgba(0, 0, 0, 0.88);
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.02);
   border-style: dashed;
   border-width: 1px;
 }
 .happy-btn-dashed:hover {
-  color: #4096ff;
-  border-color: #4096ff;
+  color: @happy-primary-color;
+  border-color: @happy-primary-color;
 }
 
 
@@ -71,7 +72,7 @@
 
 //链接按钮
 .happy-btn-link {
-  color: #1677ff;
+  color: @happy-primary-background-color;
   border-color: transparent;
   background-color: transparent;
 }
@@ -104,13 +105,13 @@
 .happy-btn-link:disabled,
 .happy-btn-text:disabled {
   cursor: not-allowed;
-  border-color: #d9d9d9;
+  border-color: @happy-disabled-border-color;
   color: rgba(0, 0, 0, 0.25);
   background-color: rgba(0, 0, 0, 0.04);
   box-shadow: none;
 }
 .happy-btn-primary:disabled {
-  border: 1px solid #d9d9d9;
+  border: @happy-disabled-border-style;
 }
 
 .happy-btn-dashed:disabled {
@@ -143,16 +144,16 @@
 
 //danger
 .happy-btn-primary.happy-btn-danger {
-  background-color: #ff4d4f;
+  background-color: @happy-danger-color;
   box-shadow: 0 2px 0 rgba(255, 38, 5, 0.06);
   color: #fff;
 }
 .happy-btn-default.happy-btn-danger, .happy-btn-dashed.happy-btn-danger {
-  color: #ff4d4f;
-  border-color: #ff4d4f;
+  color: @happy-danger-color;
+  border-color: @happy-danger-color;
 }
 .happy-btn-text.happy-btn-danger, .happy-btn-link.happy-btn-danger {
-  color: #ff4d4f;
+  color: @happy-danger-color;
 }
 
 .happy-btn-text.happy-btn-danger:not(:disabled):not(.happy-btn-disabled):hover {
@@ -176,15 +177,15 @@
 
 //ghost
 .happy-btn-primary.happy-btn-ghost:not(:disabled):not(.happy-btn-disabled){
-  color: #1677ff;
+  color: @happy-primary-background-color;
   background-color: transparent;
-  border: 1px solid #1677ff;
+  border: 1px solid @happy-primary-background-color;
   box-shadow: none;
 }
 .happy-btn-primary.happy-btn-ghost:not(:disabled):not(.happy-btn-disabled):hover{
   background-color: transparent;
-  color: #4096ff;
-  border-color: #4096ff;
+  color: @happy-primary-color;
+  border-color: @happy-primary-color;
 }
 .happy-btn-default.happy-btn-ghost:not(:disabled):not(.happy-btn-disabled),
 .happy-btn-dashed.happy-btn-ghost:not(:disabled):not(.happy-btn-disabled){
@@ -195,14 +196,14 @@
 }
 .happy-btn-default.happy-btn-ghost:not(:disabled):not(.happy-btn-disabled):hover,
 .happy-btn-dashed.happy-btn-ghost:not(:disabled):not(.happy-btn-disabled):hover{
-  color: #4096ff;
-  border-color: #4096ff;
+  color: @happy-primary-color;
+  border-color: @happy-primary-color;
   background-color: transparent;
 }
 .happy-btn-primary.happy-btn-danger.happy-btn-ghost:not(:disabled):not(.happy-btn-disabled) {
   background-color: transparent;
-  color: #ff4d4f;
-  border-color: #ff4d4f;
+  color: @happy-danger-color;
+  border-color: @happy-danger-color;
 }
 .happy-btn-primary.happy-btn-danger.happy-btn-ghost:not(:disabled):not(.happy-btn-disabled):hover {
   background-color: transparent;

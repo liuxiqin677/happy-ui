@@ -24,6 +24,12 @@ toc: content
 
 <code src="./demos/demo1.tsx"></code>
 
+## 禁用
+
+通过 `disabled` 禁用输入框
+
+<code src="./demos/demo7.tsx"></code>
+
 ## 密码框
 
 密码框

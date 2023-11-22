@@ -7,6 +7,7 @@ interface Options {
 }
 
 interface SelectProps {
+  defaultValue?: string | number | any;
   option: Array<Options>;
   className?: string;
   style?: CSSProperties;

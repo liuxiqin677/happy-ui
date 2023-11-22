@@ -1,3 +1,4 @@
+@import '../variables.less';
 .happy-input {
   position: relative;
   display: flex;
@@ -8,10 +9,10 @@
     box-sizing: border-box;
     padding: 4px 18px 4px 11px;
     color: #000000d9;
-    font-size: 14px;
+    font-size: @happy-fontSize-default;
     line-height: 1.5715;
     background-color: #fff;
-    border: 1px solid #d9d9d9;
+    border: @happy-disabled-border-style;
     outline: none;
     transition: all 0.3s;
     border-radius: 8px;
@@ -40,8 +41,8 @@
       box-shadow: 0 0 0 2px rgba(5, 145, 255, 0.1);
       outline: 0;
     }
-    &:focus{
-      border-color: #4096ff;
+    &:focus {
+      border-color: @happy-primary-color;
     }
   }
 }

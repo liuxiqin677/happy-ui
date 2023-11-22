@@ -1,9 +1,10 @@
+@import '../variables.less';
 .happy-tag {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   color: rgba(0, 0, 0, 0.88);
-  font-size: 12px;
+  font-size: @happy-fontSize-sl;
   line-height: 20px;
   list-style: none;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
@@ -15,7 +16,7 @@
   padding-inline: 7px;
   white-space: nowrap;
   background: rgba(0, 0, 0, 0.02);
-  border: 1px solid #d9d9d9;
+  border: @happy-disabled-border-style;
   border-radius: 4px;
   opacity: 1;
   transition: all 0.2s;

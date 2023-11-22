@@ -1,8 +1,9 @@
+@import '../variables.less';
 .happy-datepicker {
   padding: 10px;
   width: 300px;
   background: #ffffff;
-  border-radius: 8px;
+  border-radius: @happy-border-radius-default;
   box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08),
     0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
 }
@@ -30,7 +31,7 @@
       width: 28px;
       height: 28px;
       line-height: 28px;
-      border-radius: 8px;
+      border-radius: @happy-border-radius-default;
       transition: 0.5s;
     }
     .happy-datepicker-inner-day:not(.happy-datepicker-inner-selected):hover {
@@ -39,7 +40,7 @@
     }
     .happy-datepicker-inner-day.happy-datepicker-inner-selected {
       color: #fff;
-      background: #1677ff;
+      background: @happy-primary-background-color;
     }
   }
 }
