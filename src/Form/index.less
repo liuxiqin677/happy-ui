@@ -1,3 +1,4 @@
+@import '../variables.less';
 .happy-form {
   position: relative;
 
@@ -17,7 +18,7 @@
     position: relative;
     display: flex;
     margin-bottom: 20px;
-    font-size: 14px;
+    font-size: @happy-fontSize-default;
 
     &-label {
       position: relative;
@@ -52,7 +53,7 @@
       bottom: calc(-1 * 20px);
       left: 0;
       color: #f53f3f;
-      font-size: 12px;
+      font-size: @happy-fontSize-sl;
       opacity: 0;
       transition: 0.2s linear;
     }

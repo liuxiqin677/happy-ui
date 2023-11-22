@@ -30,6 +30,12 @@ toc: content
 
 <code src='./demos/demo2.tsx'></code>
 
+## 切换每页展示条数
+
+配置 `showSizeChanger` 增加每页显示条数限制 `select`。
+
+<code src="./demos/demo4.tsx"></code>
+
 ## 跳转
 
 跳转

@@ -1,16 +1,10 @@
-/*
- * @Author: liuxiqin
- * @Date: 2023-10-12 13:49:02
- * @LastEditTime: 2023-10-12 14:48:27
- * @LastEditors: liuxiqin
- * @Description: 
- */
+@import '../variables.less';
 .happy-radio-wrapper {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   color: rgba(0, 0, 0, 0.88);
-  font-size: 14px;
+  font-size: @happy-fontSize-default;
   line-height: 1.5714285714285714;
   list-style: none;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
@@ -26,7 +20,7 @@
     margin: 0;
     padding: 0;
     color: rgba(0, 0, 0, 0.88);
-    font-size: 14px;
+    font-size: @happy-fontSize-default;
     line-height: 1.5714285714285714;
     list-style: none;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
@@ -41,8 +35,8 @@
   }
   .happy-radio-checked {
     .happy-radio-inner {
-      border-color: #1677ff;
-      background-color: #1677ff;
+      border-color: @happy-primary-border-color;
+      background-color: @happy-primary-background-color;
     }
     .happy-radio-inner::after {
       transform: scale(0.375);
@@ -56,7 +50,7 @@
     inset-inline-start: 0;
     width: 100%;
     height: 100%;
-    border: 1px solid #1677ff;
+    border: @happy-primary-border-style;
     border-radius: 50%;
     visibility: hidden;
     content: '';
@@ -82,7 +76,7 @@
     width: 16px;
     height: 16px;
     background-color: #ffffff;
-    border-color: #d9d9d9;
+    border-color: @happy-disabled-border-color;
     border-style: solid;
     border-width: 1px;
     border-radius: 50%;
@@ -114,11 +108,11 @@
     }
     .happy-radio-inner {
       background-color: rgba(0, 0, 0, 0.04);
-      border-color: #d9d9d9;
+      border-color: @happy-disabled-border-color;
       cursor: not-allowed;
     }
     .happy-radio-inner::after {
-      background-color: #d9d9d9;
+      background-color: @happy-disabled-border-color;
     }
   }
 }
@@ -130,7 +124,7 @@
 }
 .happy-radio-wrapper:not(.happy-radio-wrapper-disabled):hover {
   .happy-radio-inner {
-    border-color: #1677ff;
+    border-color: @happy-primary-border-color;
   }
 }
 .happy-radio-wrapper-disabled {

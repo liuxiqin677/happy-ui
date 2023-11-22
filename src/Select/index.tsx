@@ -20,6 +20,7 @@ const defaultColor = '#325dff';
 const Select = React.forwardRef<unknown, SelectProps>(
   (
     {
+      defaultValue,
       option,
       className,
       style,
@@ -34,7 +35,7 @@ const Select = React.forwardRef<unknown, SelectProps>(
     },
     ref,
   ) => {
-    const [selected, setSelected] = useState<string | number | any>('');
+    const [selected, setSelected] = useState<string | number | any>(defaultValue || '');
     const [selectedValue, setSelectedValue] = useState<string | number | any>(
       '',
     );

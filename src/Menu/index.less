@@ -1,10 +1,11 @@
-@hoverColor: rgba(205,209,212, 0.2);
+@import '../variables.less';
+@hoverColor: rgba(205, 209, 212, 0.2);
 @itemHeight: 50px;
 
 .happy-navMenu {
   background-color: white;
   min-width: 180px;
-  font-size: 14px;
+  font-size: @happy-fontSize-default;
   padding: 0;
   overflow: hidden;
 
@@ -90,7 +91,7 @@
 
   &__active {
     background-color: #e6f4ff;
-    color: #1677ff;
+    color: @happy-primary-background-color;
   }
 }
 
@@ -120,14 +121,9 @@
   }
 
   &__items {
-    background-color: rgba(205,209,212, 0.06);
+    background-color: rgba(205, 209, 212, 0.06);
     transition: width, height 0.2s ease-in-out;
     overflow: hidden;
-
-    // .happy-subNavMenu__title {
-    //   background-color: #e6f4ff;
-    //   color: #1677ff;
-    // }
 
     .happy-navMenuItem:hover {
       background-color: @hoverColor;

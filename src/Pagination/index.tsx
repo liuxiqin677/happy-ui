@@ -3,6 +3,7 @@ import React, { FC, useEffect, useMemo, useState } from 'react';
 import EllipsisOutlined from '../../components/EllipsisOutlined';
 import LeftOutlined from '../../components/LeftOutlined';
 import RightOutlined from '../../components/RightOutlined';
+import Select from '../Select/index';
 import './index.less';
 import { IPaginationProps } from './interface';
 
@@ -22,7 +23,7 @@ const Pagination: FC<IPaginationProps> = ({
   size = 'default',
 }) => {
   // 当前页
-  const [nowIndex, setNowIndex] = useState<number>(defaultCurrent || 1);
+  const [nowIndex, setNowIndex] = useState<number>(defaultCurrent || current || 1);
   // 分页器 state
   const [pageArray, setpageArray] = useState<Array<number>>([]);
   // 分页切换器的一页条数
@@ -36,7 +37,19 @@ const Pagination: FC<IPaginationProps> = ({
 
   // 总页数
   const totalPage = useMemo(() => {
-    return Math.ceil(total / togglePageSize);
+    const res: number = Math.ceil(total / togglePageSize);
+    if (res > 6) {
+      setpageArray([2, 3, 4, 5, 6]);
+    } else if (res > 2) {
+      const array = new Array(res - 2).fill(0);
+      array.forEach((item, index) => {
+        array[index] = index + 2;
+      });
+      setpageArray(array);
+    } else {
+      setpageArray([]);
+    }
+    return res;
   }, [total, togglePageSize]);
 
   //  上一页
@@ -183,6 +196,12 @@ const Pagination: FC<IPaginationProps> = ({
     }
     setNowIndex(nextFivePage);
     onChange?.(nextFivePage, togglePageSize);
+  };
+
+  // select回调
+  const handleSelectCallback = (pageSize: any) => {
+    setTogglePageSize(pageSize.value);
+    onShowSizeChange && onShowSizeChange(nowIndex, pageSize.value);
   };
 
   // 跳转
@@ -352,7 +371,19 @@ const Pagination: FC<IPaginationProps> = ({
         <RightOutlined />
       </div>
       {/* 切换每页条数 */}
-      {/* {showSizeChanger && <div>后面写了 select 优化这里</div>} */}
+      {Array.isArray(pageSizeOptions) && showSizeChanger && (
+        <Select
+          defaultValue={`${togglePageSize} 条/页`}
+          option={pageSizeOptions.map((item) => {
+            return {
+              label: `${item} 条/页`,
+              value: item,
+            };
+          })}
+          width={100}
+          onSelect={handleSelectCallback}
+        />
+      )}
       {/* 跳转 */}
       {showQuickJumper && (
         <div className={`happy-pagination-jumpBox`}>
