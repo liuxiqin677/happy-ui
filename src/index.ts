@@ -20,4 +20,5 @@ export { default as Radio } from './Radio';
 export { default as Select } from './Select';
 export { default as Skeleton } from './Skeleton';
 export { default as Space } from './Space';
+export { default as Table } from './Table';
 export { default as Tag } from './Tag';
