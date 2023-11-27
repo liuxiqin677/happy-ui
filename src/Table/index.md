@@ -11,7 +11,7 @@ toc: content
 
 # Table 表格
 
-It is used for data collection, display, analysis and processing.
+用于数据收集展示、分析整理、操作处理。
 
 ## 基础表格
 
@@ -33,13 +33,13 @@ It is used for data collection, display, analysis and processing.
 
 ## 单选
 
-配置 `radio` 以支持单选，`radioSelectCallback` 获取选择结果。
+配置 `radio` 以支持单选，`onRadioCallback` 获取选择结果。
 
 <code src="./demos/demo4.tsx"></code>
 
 ## 多选
 
-配置 `checked` 以支持多选，`checkedSelectCallback` 获取选择结果。
+配置 `checked` 以支持多选，`onCheckedCallback` 获取选择结果。
 
 <code src="./demos/demo5.tsx"></code>
 
@@ -49,6 +49,12 @@ It is used for data collection, display, analysis and processing.
 配合 `sortable` 使用
 
 <code src="./demos/demo6.tsx"></code>
+
+## 自定义渲染
+
+`columns` 定义 `render` 自定义渲染
+
+<code src="./demos/demo7.tsx"></code>
 
 ## 虚拟列表滚动
 
@@ -74,30 +80,30 @@ It is used for data collection, display, analysis and processing.
 
 ## API
 
-| Name               | Description                                                 | Type                        | Default                                          |
-| ------------------ | ----------------------------------------------------------- | --------------------------- | ------------------------------------------------ |
-| className          | 自定义类名                                                  | `string`                    | `--`                                             |
-| style              | 自定义样式                                                  | `CSSProperties`             | `--`                                             |
-| columns            | 表头配置项                                                  | `Array<TTableThType>`       | `[]`                                             |
-| data               | 表内容配置项                                                | `Array<string>`             | `[]`                                             |
-| align              | 表格对齐方式                                                | `left`、`right`、`center`   | `left`                                           |
-| width              | 列宽                                                        | `string`                    | `配置在titleParams中，添加参数，如 width: "400"` |
-| expandedRowRender  | 展开行                                                      | `Function`                  | `接受自定义参数，回调函数传入展开行内容`         |
-| radio              | 单选                                                        | `boolean`                   | `false`                                          |
-| checked            | 多选                                                        | `boolean`                   | `false`                                          |
-| onRadioCallback    | 单选回调                                                    | `Function`                  | `--`                                             |
-| onCheckedCallback  | 多选回调                                                    | `Function`                  | `--`                                             |
-| sortable           | 支持排序                                                    | `boolean`                   | `--`                                             |
-| filter             | 支持筛选                                                    | `boolean`                   | `false`                                          |
-| sorter             | 表头中的排序规则，true 采用列默认排序，Array 采用自定义排序 | `boolean / Array<Function>` | `--`                                             |
-| virtualized        | 虚拟列表                                                    | `boolean`                   | `false`                                          |
-| virtualListNum     | 懒加载、虚拟列表默认展示数据条数                            | `number`                    | `10`                                             |
+| Name               | Description                                                 | Type                        | Default                                  |
+| ------------------ | ----------------------------------------------------------- | --------------------------- | ---------------------------------------- |
+| className          | 自定义类名                                                  | `string`                    | `--`                                     |
+| style              | 自定义样式                                                  | `CSSProperties`             | `--`                                     |
+| columns            | 表头配置项                                                  | `Array<TTableThType>`       | `[]`                                     |
+| data               | 表内容配置项                                                | `Array<string>`             | `[]`                                     |
+| align              | 表格对齐方式                                                | `left`、`right`、`center`   | `left`                                   |
+| width              | 列宽                                                        | `number`                    | `auto`                                   |
+| expandedRowRender  | 展开行                                                      | `Function`                  | `接受自定义参数，回调函数传入展开行内容` |
+| radio              | 单选                                                        | `boolean`                   | `false`                                  |
+| checked            | 多选                                                        | `boolean`                   | `false`                                  |
+| onRadioCallback    | 单选回调                                                    | `Function`                  | `--`                                     |
+| onCheckedCallback  | 多选回调                                                    | `Function`                  | `--`                                     |
+| sortable           | 支持排序                                                    | `boolean`                   | `--`                                     |
+| filter             | 支持筛选                                                    | `boolean`                   | `false`                                  |
+| sorter             | 表头中的排序规则，true 采用列默认排序，Array 采用自定义排序 | `boolean / Array<Function>` | `--`                                     |
+| virtualized        | 虚拟列表                                                    | `boolean`                   | `false`                                  |
+| virtualListNum     | 懒加载、虚拟列表默认展示数据条数                            | `number`                    | `10`                                     |
 | lazyLoad           | 懒加载                                                      | `false`                     |
-| pagination         | 分页                                                        | `boolean`                   | `false`                                          |
-| paginationAlign    | 分页器对齐方式                                              | `left`、`right`、`center`   | `right`                                          |
-| pageSizeOption     | 分页器每页展示配置                                          | `Array<number>`             | `[10, 20, 30, 50]`                               |
-| onPageNumberChange | 分页器改变页码回调函数                                      | `Function`                  | `--`                                             |
-| onPageSizeChange   | 分页器改变每页数量回调函数                                  | `Function`                  | `--`                                             |
+| pagination         | 分页                                                        | `boolean`                   | `false`                                  |
+| paginationAlign    | 分页器对齐方式                                              | `left`、`right`、`center`   | `right`                                  |
+| pageSizeOption     | 分页器每页展示配置                                          | `Array<number>`             | `[10, 20, 30, 50]`                       |
+| onPageNumberChange | 分页器改变页码回调函数                                      | `Function`                  | `--`                                     |
+| onPageSizeChange   | 分页器改变每页数量回调函数                                  | `Function`                  | `--`                                     |
 
 ## TTableThType
 

@@ -12,7 +12,7 @@ export default () => {
       title: 'Age',
       key: 'Age',
       dataIndex: 'age',
-      // width: '300'
+      width: 150
     },
     {
       title: 'Address',

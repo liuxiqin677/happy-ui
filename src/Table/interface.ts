@@ -30,9 +30,10 @@ interface TTableThType {
   key: string;
   title: string | number;
   dataIndex: string | number;
-  width?: string;
+  width?: number;
   sorter?: boolean | Array<Function> | number | string;
   filter?: boolean | string;
+  render?: (row: any) => ReactNode;
 }
 
 export type { ITableProps, TTableThType };
