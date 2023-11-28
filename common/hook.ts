@@ -1,10 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface cssClass {
   base: string; // 初始状态的样式类名
   [key: string]: string;
 }
 
+/**
+ * 类名管理 hook
+ * @param cssClassMap class类名map
+ * @returns 
+ */
 export const useCssClassManager = (cssClassMap: cssClass) => {
   const [classMap, setClassMap] = useState<cssClass>({
     base: cssClassMap.base,
@@ -42,4 +47,24 @@ export const useCssClassManager = (cssClassMap: cssClass) => {
     hasClassName,
     classList,
   };
+};
+
+/**
+ * 第一次挂载时不执行，后续再执行
+ * @param callback 回调
+ * @param deps 依赖
+ */
+export const useCallbackAfterFirstMounted = (
+  callback: Function,
+  deps: Array<any>,
+) => {
+  const isMounted = useRef<boolean>(false);
+
+  useEffect(() => {
+    if (!isMounted.current) {
+      isMounted.current = true;
+      return;
+    }
+    callback && callback();
+  }, deps);
 };

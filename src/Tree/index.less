@@ -1,0 +1,47 @@
+@import '../variables.less';
+@nodeHeight: 30px;
+@iconSize: 5px;
+
+.happy-tree {
+  flex-grow: 1;
+}
+
+.happy-tree-node {
+  height: @nodeHeight;
+  transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+  overflow: hidden;
+
+  &-label {
+    padding-left: 10px;
+    line-height: @nodeHeight;
+    height: @nodeHeight;
+    display: flex;
+    align-items: center;
+
+    div {
+      font-size: @happy-fontSize-default;
+      padding: 0px 2px;
+      border-radius: @happy-border-radius-default;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    &-leaf {
+      &:hover {
+        cursor: default;
+      }
+
+      &::before {
+        visibility: hidden;
+      }
+    }
+  }
+
+  &-children {
+    margin-left: 25px;
+    &-expand {
+      height: max-content;
+    }
+  }
+}

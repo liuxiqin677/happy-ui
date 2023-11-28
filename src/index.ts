@@ -22,3 +22,4 @@ export { default as Skeleton } from './Skeleton';
 export { default as Space } from './Space';
 export { default as Table } from './Table';
 export { default as Tag } from './Tag';
+export { default as Tree } from './Tree';
