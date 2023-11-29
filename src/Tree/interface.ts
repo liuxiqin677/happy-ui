@@ -26,7 +26,24 @@ interface ITreeProps extends ITreeEvents {
 interface ITreeNodeProps extends TTreeNodeData {
   open?: boolean;
   select?: boolean;
+  disable?: boolean;
   childrenData?: Array<TTreeNodeData>;
 }
 
-export { ISelectNodes, ITreeEvents, ITreeNodeProps, ITreeProps, TTreeNodeData };
+interface ITreeContext {
+  selectable: boolean;
+  selectNodes: Array<string>;
+  setSelectNodes: any;
+  onExpand?: (expandNode: TTreeNodeData) => any;
+  onCollapse?: (expandNode: TTreeNodeData) => any;
+  onSelect?: (selectNodes: Array<string>) => any;
+}
+
+export {
+  ISelectNodes,
+  ITreeContext,
+  ITreeEvents,
+  ITreeNodeProps,
+  ITreeProps,
+  TTreeNodeData,
+};

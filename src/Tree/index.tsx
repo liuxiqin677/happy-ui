@@ -2,16 +2,28 @@ import React, { FC, createContext, useState } from 'react';
 import { useCallbackAfterFirstMounted } from '../../common/hook';
 import TreeNode from './TreeNode';
 import './index.less';
-import { ITreeProps } from './interface';
+import { ITreeContext, ITreeProps } from './interface';
 
-export const TreeContext = createContext<any>({});
+export const TreeContext = createContext<ITreeContext>({
+  selectable: false,
+  selectNodes: [],
+  setSelectNodes: () => {},
+  onExpand: () => {},
+  onCollapse: () => {},
+  onSelect: () => {},
+});
 
 // dfs 渲染 tree
-const generateTreeNode = (node: any) => {
+export const generateTreeNode = (node: any, resetProps: any = {}) => {
   if (!node) return null;
 
   return (
-    <TreeNode key={node.id} {...node} childrenData={node.children}>
+    <TreeNode
+      key={node.id}
+      {...node}
+      {...resetProps}
+      childrenData={node.children}
+    >
       {node.children &&
         node.children.length &&
         node.children.map((child: any) => generateTreeNode(child))}
@@ -36,7 +48,6 @@ const Tree: FC<ITreeProps> = ({
     <div className="happy-tree">
       <TreeContext.Provider
         value={{
-          data,
           selectable,
           selectNodes,
           setSelectNodes,
