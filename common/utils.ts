@@ -1,7 +1,7 @@
 import React from 'react';
 
 /**
- * 把银时属性绑定到组件
+ * 把隐式属性绑定到组件
  * @param nodes
  * @param hintProps
  * @returns

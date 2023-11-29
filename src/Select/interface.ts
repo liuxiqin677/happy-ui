@@ -1,8 +1,8 @@
 import { CSSProperties } from 'react';
 
 interface Options {
-  label: String | number;
-  value: String | number;
+  label: string | number;
+  value: string | number;
   disabled?: Boolean;
 }
 
