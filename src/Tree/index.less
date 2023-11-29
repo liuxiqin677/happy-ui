@@ -18,13 +18,14 @@
     display: flex;
     align-items: center;
 
+    .happy-tree-arrow {
+      cursor: pointer;
+    }
+
     div {
       font-size: @happy-fontSize-default;
       padding: 0px 2px;
       border-radius: @happy-border-radius-default;
-      &:hover {
-        cursor: pointer;
-      }
     }
 
     &-leaf {
@@ -35,6 +36,11 @@
       &::before {
         visibility: hidden;
       }
+    }
+
+    .happy-tree-label-disabled {
+      cursor: not-allowed;
+      color: #afacac;
     }
   }
 

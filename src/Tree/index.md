@@ -19,6 +19,12 @@ Tree 的基本使用
 
 <code src='./demos/demo1.tsx'></code>
 
+## 节点禁用
+
+配置 `disabled` 节点禁用
+
+<code src='./demos/demo5.tsx'></code>
+
 ## 可选择
 
 配置 `selectable` 可选择的 Tree
@@ -56,6 +62,7 @@ Tree 的基本使用
 | -------- | ---------------------- | ------ | ----- | ----------------------- |
 | id       | `string`               | -      | true  | 树节点的唯一 id，`必传` |
 | label    | `string`               | -      | true  | 标签，`必传`            |
-| open     | `boolean`              | false  | false | 树节点是否默认展开      |
-| select   | `boolean`              | false  | false | 树节点是否默认选中      |
+| open     | `boolean`              | false  | false | 树节点是否展开          |
+| select   | `boolean`              | false  | false | 树节点是否选中          |
+| disable  | `boolean`              | false  | false | 树节点是否禁用          |
 | children | `Array<TTreeNodeData>` | -      | false | 嵌套子节点              |

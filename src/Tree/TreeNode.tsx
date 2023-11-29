@@ -3,19 +3,21 @@ import { useCallbackAfterFirstMounted } from '../../common/hook';
 import CaretDownOutlined from '../../components/CaretDownOutlined';
 import CaretRightOutlined from '../../components/CaretRightOutlined';
 import Checkbox from '../CheckBox';
-import { TreeContext } from './index';
-import { ITreeNodeProps, TTreeNodeData } from './interface';
+import { TreeContext, generateTreeNode } from './index';
+import { ITreeContext, ITreeNodeProps, TTreeNodeData } from './interface';
 
 const nodeBaseClass = 'happy-tree-node';
 const labelBaseClass = 'happy-tree-node-label';
 const nodeStyleMap = {
   base: nodeBaseClass,
   expand: `${nodeBaseClass} ${nodeBaseClass}-children-expand`,
+  disabled: `${nodeBaseClass} ${nodeBaseClass}-disabled`,
 };
 const labelStyleMap = {
   base: labelBaseClass,
   leaf: `${labelBaseClass} ${labelBaseClass}-leaf`,
   open: `${labelBaseClass} ${labelBaseClass}-open`,
+  disabled: `${labelBaseClass} ${labelBaseClass}-disabled`,
 };
 
 const TreeNode: FC<ITreeNodeProps> = ({
@@ -23,15 +25,16 @@ const TreeNode: FC<ITreeNodeProps> = ({
   label,
   childrenData,
   open = false,
+  disable = false,
   select = false,
   children,
 }) => {
   const { selectable, setSelectNodes, onExpand, onCollapse } =
-    useContext(TreeContext);
-  const [nodeSelect, setNodeSelect] = useState(select);
-  const [nodeExpand, setNodeExpand] = useState(open);
-  const [nodeStyle, setNodeStyle] = useState(nodeStyleMap.base);
-  let [labelStyle, setLabelStyle] = useState(labelStyleMap.base);
+    useContext<ITreeContext>(TreeContext);
+  const [nodeSelect, setNodeSelect] = useState<boolean>(select);
+  const [nodeExpand, setNodeExpand] = useState<boolean>(open);
+  const [nodeStyle, setNodeStyle] = useState<string>(nodeStyleMap.base);
+  let [labelStyle, setLabelStyle] = useState<string>(labelStyleMap.base);
 
   const currentNode = { id, label, children: childrenData };
 
@@ -120,15 +123,21 @@ const TreeNode: FC<ITreeNodeProps> = ({
           </div>
         )}
         {selectable && (
-          <Checkbox onChange={handleSelect} checked={nodeSelect} />
+          <Checkbox
+            disabled={disable}
+            onChange={handleSelect}
+            checked={nodeSelect}
+          />
         )}
-        <div>{label}</div>
+        <div className={disable ? 'happy-tree-label-disabled' : ''}>
+          {label}
+        </div>
       </div>
 
-      {children?.length && (
+      {childrenData && childrenData.length && (
         <div className="happy-tree-node-children">
-          {children.map((child) => {
-            return React.cloneElement(child as any, {
+          {childrenData.map((child) => {
+            return generateTreeNode(child, {
               select: nodeSelect,
             });
           })}
