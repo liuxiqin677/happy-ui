@@ -1,5 +1,6 @@
 export { default as Alert } from './Alert';
 export { default as Avatar } from './Avatar';
+export { default as Breadcrumb } from './Breadcrumb';
 export { default as Button } from './Button';
 export { default as CheckBox } from './CheckBox';
 export { default as DatePicker } from './DatePicker';

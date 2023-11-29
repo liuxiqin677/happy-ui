@@ -1,0 +1,25 @@
+@import '../variables.less';
+
+@happy-breadcrumb-item-color: #4e5969;
+@happy-breadcrumb-separator-color: #cdd1d8;
+
+.happy-breadcrumb {
+  display: flex;
+  font-size: @happy-fontSize-default;
+  align-items: center;
+
+  .happy-breadcrumb-item {
+    color: @happy-breadcrumb-item-color;
+  }
+
+  .happy-breadcrumb-item-ellipse {
+    position: relative;
+    bottom: 3px;
+    color: @happy-breadcrumb-item-color;
+  }
+
+  .happy-breadcrumb-item-separator {
+    margin: 0 12px;
+    color: @happy-breadcrumb-separator-color;
+  }
+}
