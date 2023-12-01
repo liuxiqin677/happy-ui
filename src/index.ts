@@ -5,6 +5,7 @@ export { default as Button } from './Button';
 export { default as CheckBox } from './CheckBox';
 export { default as DatePicker } from './DatePicker';
 export { default as Divider } from './Divider';
+export { default as Dropdown } from './Dropdown';
 export { default as Flex } from './Flex';
 export { default as Form } from './Form';
 export { default as Input } from './Input';
