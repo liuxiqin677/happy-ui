@@ -1,0 +1,28 @@
+@import '../variables.less';
+
+@happy-empty-icon-size: 48px;
+@happy-empty-light-icon-bg: #a9aeb8;
+@happy-empty-light-text-bg: #c4c7ce;
+@happy-empty-dark-icon-bg: #78787a;
+@happy-empty-dark-text-bg: #656566;
+
+.happy-empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  padding: 10px 0;
+
+  .happy-empty-icon {
+    width: 1em;
+    height: 1em;
+    font-size: @happy-empty-icon-size;
+    color: @happy-empty-light-icon-bg;
+  }
+  
+  .happy-empty-text {
+    margin-top: 8px;
+    color: @happy-empty-light-text-bg;
+  }
+}
