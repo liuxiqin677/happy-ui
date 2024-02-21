@@ -25,7 +25,7 @@ const DefaultCloseIcon = () => (
 const Alert: React.FC<IAlertProps> = ({
   icon,
   banner = false,
-  type = banner === true ? 'warning' : 'info', // banner 时默认是 warning
+  type = banner ? 'warning' : 'info', // banner 时默认是 warning
   message = '',
   description,
   action,
